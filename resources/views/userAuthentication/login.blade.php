@@ -1,3 +1,4 @@
+<x-navigationbar />
 <section
   class="min-h-[calc(100vh-80px)] flex items-center justify-center p-4 md:p-8"
 >
@@ -15,9 +16,13 @@
           <input
             type="email"
             placeholder="Enter email"
+            value="{{ old('email') }}"
             name="email"
             class="w-full border border-gray-200 rounded-lg px-4 py-3.5 text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent placeholder-gray-400 bg-white"
           />
+          @error('email')
+          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+          @enderror
         </div>
 
         <div>
@@ -28,6 +33,7 @@
             <input
               type="password"
               id="passwordInputLogin"
+              value="{{ old('password') }}"
               placeholder="Enter password"
               name="password"
               class="w-full border border-gray-200 rounded-lg px-4 py-3.5 text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent placeholder-gray-400 bg-white pr-16"
@@ -40,8 +46,11 @@
               Show
             </button>
           </div>
+         
         </div>
-
+ @error('password')
+          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+          @enderror 
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
             <input
@@ -68,13 +77,19 @@
           Login
         </button>
 
-        <div class="relative flex py-4 items-center">
-          <div class="flex-grow border-t border-gray-200"></div>
-          <span class="flex-shrink-0 mx-4 text-gray-500 text-sm"
-            >or login with</span
-          >
-          <div class="flex-grow border-t border-gray-200"></div>
-        </div>
+<div class="py-4">
+
+  <div class="flex items-center">
+    <div class="flex-grow border-t border-gray-200"></div>
+    <span class="mx-4 text-gray-500 text-sm">or login with</span>
+    <div class="flex-grow border-t border-gray-200"></div>
+  </div>
+  <div class="mt-4 flex justify-center gap-4">
+    <x-googleauth />
+    <x-githubauth />
+  </div>
+</div>
+
 
         <div class="flex justify-center gap-6">
          
@@ -85,7 +100,7 @@
           <p class="text-gray-600">
             Don't have an account?
             <a
-              href="/signup"
+              href="{{route('register')}}"
               class="text-brand-purple font-bold hover:underline"
               >Register</a
             >
@@ -101,10 +116,12 @@
         class="absolute w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"
       ></div>
       <img
-        src="/images/login.png"
+        src="{{asset('images/login.png')}}"
         alt="Login Illustration"
         class="relative z-10 w-full max-w-md object-contain drop-shadow-xl rounded-xl"
       />
     </div>
   </div>
 </section>
+</body>
+</html>

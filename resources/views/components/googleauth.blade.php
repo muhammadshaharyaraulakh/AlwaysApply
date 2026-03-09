@@ -1,9 +1,9 @@
  <a
-            href="/login/google"
+            href="{{route('login.github')}}"
             class="p-3 bg-white border cursor-pointer border-gray-200 rounded-full shadow-sm hover:shadow-md transition inline-flex items-center justify-center"
           >
             <img
-              src="/frontend/images/google.svg"
+              src="{{asset('images/google.svg')}}"
               alt="Google"
               class="w-8 h-8"
             />
