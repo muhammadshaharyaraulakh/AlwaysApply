@@ -17,7 +17,7 @@
   <body class="bg-gray-50 text-gray-800">
     <div class="relative">
  <nav
-      class="bg-white py-4 px-6 md:px-12 flex flex-wrap items-center justify-between relative z-50"
+      class="bg-white py-4 px-6 md:px-12 flex flex-wrap items-center justify-between relative z-50 "
     >
       <div class="flex items-center gap-2 cursor-pointer flex-shrink-0">
         <svg

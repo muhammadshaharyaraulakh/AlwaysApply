@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 AOS.init({
     duration: 1000, 
     once: false,     
+    easing: 'ease-in-out',
 });
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -33,7 +34,7 @@ togglePasswordBtn.addEventListener("click", () => {
     togglePasswordBtn.textContent = type === "password" ? "Show" : "Hide";
 });
 
-    
+   
 
 });
 
