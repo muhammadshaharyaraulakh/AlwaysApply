@@ -13,6 +13,11 @@ Route::get('/register', function () {
 Route::post('/register', [UserAuthentication::class, 'registrationOtp'])->name('register.otp');
 Route::post('/verify', [UserAuthentication::class, 'verify'])->name('verify.otp');
 Route::view('/confirm-email', 'userAuthentication.confirmEmail')->name('confirm.email');
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect()->route('login');
+})->name('logout');
+
 Route::get('/login', function () {
     return view('userAuthentication.login');
 })->name('login');

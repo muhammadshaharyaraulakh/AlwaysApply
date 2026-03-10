@@ -1,5 +1,11 @@
 import './bootstrap';
 import './main.js';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init({
+    duration: 1000, 
+    once: false,     
+});
 document.addEventListener("DOMContentLoaded", () => {
 
     const btn = document.getElementById("mobile-menu-btn");

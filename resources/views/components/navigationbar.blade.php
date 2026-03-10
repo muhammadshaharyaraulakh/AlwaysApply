@@ -59,10 +59,29 @@
       </div>
 
       <div
-        class="desktop-buttons hidden md:flex flex-wrap items-center gap-4 flex-shrink-0"
+        class="desktop-buttons  hidden md:flex flex-wrap items-center gap-4 flex-shrink-0"
       >
-       
-        <a href="{{route('login')}}">
+       @if(Auth::check())
+
+        <div class="flex  gap-4">
+  <a href="{{ route('contact') }}" class="w-1/2">
+    <button
+      class="w-full cursor-pointer px-6 py-2 bg-brand-purple text-white rounded font-medium shadow-md hover:bg-purple-800 transition"
+    >
+      Contact
+    </button>
+  </a>
+
+  <a href="{{ route('logout') }}" class="w-1/2">
+    <button
+      class="w-full cursor-pointer px-5 py-2 border border-brand-purple text-brand-purple rounded font-medium hover:bg-brand-light transition"
+    >
+      Logout
+    </button>
+  </a>
+</div>
+        @else
+               <a href="{{route('login')}}">
           <button
             class="cursor-pointer px-6 py-2 bg-brand-purple text-white rounded font-medium shadow-md hover:bg-purple-800 transition"
           >
@@ -76,6 +95,7 @@
             Register
           </button>
         </a>
+        @endif
       </div>
 
       <button
@@ -88,7 +108,7 @@
 
    <div
 id="mobile-menu"
-class="hidden flex-col bg-white p-4 md:hidden w-full shadow-lg transition-all duration-300 ease-in-out origin-top scale-y-0 opacity-0 absolute top-full left-0 z-[9999]"
+class="hidden flex-col  bg-white p-4 md:hidden w-full shadow-lg transition-all duration-300 ease-in-out origin-top scale-y-0 opacity-0 absolute top-full left-0 z-[9999]"
 >
 
       <a href="/" class="hover:text-brand-purple transition py-2">Home</a>
@@ -101,28 +121,40 @@ class="hidden flex-col bg-white p-4 md:hidden w-full shadow-lg transition-all du
       <a href="/applications" class="hover:text-brand-purple transition py-2"
         >Applications</a
       >
-      <div class="mt-4 flex flex-col gap-3">
-        <a href="/"
-          ><button
-            class="w-full px-5 py-2 border border-brand-purple text-brand-purple rounded font-medium"
-          >
-            Contact Us
-          </button></a
-        >
-        <a href="/signup"
-          ><button
-            class="w-full px-5 py-2 border border-brand-purple text-brand-purple rounded font-medium"
-          >
-            Register
-          </button></a
-        >
-        <a href="/login"
-          ><button
-            class="w-full px-6 py-2 bg-brand-purple text-white rounded font-medium"
-          >
-            Login
-          </button></a
-        >
-      </div>
+      <div class="mt-4 flex flex-col  gap-3">
+  @if(Auth::check())
+    <a href="{{ route('contact') }}" class="w-1/3">
+      <button
+        class="w-full px-5 py-2 border border-brand-purple text-brand-purple rounded font-medium"
+      >
+        Contact 
+      </button>
+    </a>
+
+    <a href="{{ route('logout') }}" class="w-1/3">
+      <button
+        class="w-full px-6 py-2 bg-brand-purple text-white rounded font-medium"
+      >
+        Logout
+      </button>
+    </a>
+  @else
+    <a href="{{ route('register') }}" class="w-1/3">
+      <button
+        class="w-full px-5 py-2 border border-brand-purple text-brand-purple rounded font-medium"
+      >
+        Register
+      </button>
+    </a>
+
+    <a href="{{ route('login') }}" class="w-1/3">
+      <button
+        class="w-full px-6 py-2 bg-brand-purple text-white rounded font-medium"
+      >
+        Login
+      </button>
+    </a>
+  @endif
+</div>
     </div>
 </div>
