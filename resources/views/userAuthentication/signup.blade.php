@@ -7,8 +7,8 @@
         </div>
         
         <div class="bg-white rounded-2xl shadow-xl p-6 md:p-10 border border-gray-100">
-            <form action="#" class="space-y-6" method="POST">
-                
+            <form action="{{ route('register.otp') }}" class="space-y-6" method="POST">
+                @csrf
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-2">Full name<span class="text-red-500">*</span></label>
                     <input type="text" placeholder="Enter your full name" name="name" value="{{ old('name') }}"
