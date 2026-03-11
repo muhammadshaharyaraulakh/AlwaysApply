@@ -19,8 +19,9 @@ class JobsController extends Controller
 
     return view('userPages.jobs', compact('jobs'));
 }
-    public function index(){
-        $jobs = Alljob::with('company')->get();
-        return view('/', compact('jobs'));
-    }
+    public function index()
+{
+    $jobs = Alljob::with('company')->get();
+    return view('home', compact('jobs'));
+}
 }

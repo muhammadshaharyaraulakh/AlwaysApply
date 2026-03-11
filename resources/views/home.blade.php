@@ -178,27 +178,28 @@
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  @foreach($jobs as $job)
+    <div
         class="bg-purple-50 p-6 rounded-xl border border-purple-100 hover:shadow-lg transition"
         data-aos="fade-up"
         data-aos-delay="100"
       >
         <div class="flex justify-between items-start mb-4">
           <div>
-            <h3 class="font-bold text-gray-900">Technical Support Specialist</h3>
-            <span class="text-green-600 text-xs font-bold uppercase">Part-Time</span>
-            <span class="text-gray-500 text-xs ml-2">Salary: 20,000 INR - 25,000 INR</span>
+            <h3 class="font-bold text-gray-900">{{$job->title}}</h3>
+            <span class="text-green-600 text-xs font-bold uppercase"></span>
+            <span class="text-gray-500 text-xs ml-2">Salary: {{$job->minimum_salary}} - {{$job->maximum_salary}} {{$job->salary_type}}</span>
           </div>
           <i class="fa-regular fa-bookmark text-gray-400 cursor-pointer hover:text-brand-purple"></i>
         </div>
         <div class="flex items-center gap-3 mb-6">
           <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="w-6 h-6" alt="Google" />
+            <img src="{{ asset('images/company/' . $job->company->logo) }}" class="w-6 h-6" alt="{{ $job->company->name }}" />
           </div>
           <div>
-            <p class="font-semibold text-sm">Google Inc.</p>
-            <p class="text-xs text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> New Delhi, India</p>
+            <p class="font-semibold text-sm">{{ $job->company->name }}</p>
+            <p class="text-xs text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> {{ $job->company->location }}</p>
           </div>
         </div>
         <div class="flex justify-between items-center mt-6">
@@ -210,133 +211,14 @@
           </div>
         </div>
         <div class="flex gap-3 mt-6">
-          <button class="flex-1 py-2 border border-gray-300 rounded text-sm font-medium hover:border-brand-purple hover:text-brand-purple transition">View details</button>
+         <button class="flex-1 py-2 border border-gray-300 rounded text-sm font-medium hover:border-brand-purple hover:text-brand-purple transition"><a href="{{ route('job', $job->id) }}">View details</a></button> 
           <button class="flex-1 py-2 bg-brand-purple text-white rounded text-sm font-medium hover:bg-brand-dark transition">Apply now</button>
         </div>
       </div>
+  @endforeach
+</div>
 
-      <div
-        class="bg-purple-50 p-6 rounded-xl border border-purple-100 hover:shadow-lg transition"
-        data-aos="fade-up"
-        data-aos-delay="200"
-      >
-        <div class="flex justify-between items-start mb-4">
-          <div>
-            <h3 class="font-bold text-gray-900">Senior UI/UX Designer</h3>
-            <span class="text-brand-purple text-xs font-bold uppercase">Full-Time</span>
-            <span class="text-gray-500 text-xs ml-2">Salary: $30,000 - $55,000</span>
-          </div>
-          <i class="fa-regular fa-bookmark text-gray-400 cursor-pointer hover:text-brand-purple"></i>
-        </div>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
-            <i class="fa-brands fa-apple text-xl text-black"></i>
-          </div>
-          <div>
-            <p class="font-semibold text-sm">Apple</p>
-            <p class="text-xs text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Boston, USA</p>
-          </div>
-        </div>
-        <div class="flex justify-between items-center mt-6">
-          <div class="flex -space-x-2">
-            <img class="w-7 h-7 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=4" alt="" />
-            <img class="w-7 h-7 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=5" alt="" />
-            <span class="text-xs text-gray-500 self-center ml-2 pl-1">5+ applicants</span>
-          </div>
-        </div>
-        <div class="flex gap-3 mt-6">
-          <button class="flex-1 py-2 border border-gray-300 rounded text-sm font-medium hover:border-brand-purple hover:text-brand-purple transition">View details</button>
-          <button class="flex-1 py-2 bg-brand-purple text-white rounded text-sm font-medium hover:bg-brand-dark transition">Apply now</button>
-        </div>
-      </div>
-
-      <div
-        class="bg-purple-50 p-6 rounded-xl border border-purple-100 hover:shadow-lg transition"
-        data-aos="fade-up"
-        data-aos-delay="300"
-      >
-        <div class="flex justify-between items-start mb-4">
-          <div>
-            <h3 class="font-bold text-gray-900">Marketing Officer</h3>
-            <span class="text-brand-purple text-xs font-bold uppercase">Part-Time</span>
-            <span class="text-gray-500 text-xs ml-2">Salary: 15,000 INR - 35,000 INR</span>
-          </div>
-          <i class="fa-regular fa-bookmark text-gray-400 cursor-pointer hover:text-brand-purple"></i>
-        </div>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Intel-logo.svg" class="w-6 h-6" alt="Intel" />
-          </div>
-          <div>
-            <p class="font-semibold text-sm">Intel Corp</p>
-            <p class="text-xs text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Bangalore, India</p>
-          </div>
-        </div>
-        <div class="flex justify-between items-center mt-6">
-          <div class="flex -space-x-2">
-            <img class="w-7 h-7 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=8" alt="" />
-            <img class="w-7 h-7 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=9" alt="" />
-            <span class="text-xs text-gray-500 self-center ml-2 pl-1">30+ applicants</span>
-          </div>
-        </div>
-        <div class="flex gap-3 mt-6">
-          <button class="flex-1 py-2 border border-gray-300 rounded text-sm font-medium hover:border-brand-purple hover:text-brand-purple transition">View details</button>
-          <button class="flex-1 py-2 bg-brand-purple text-white rounded text-sm font-medium hover:bg-brand-dark transition">Apply now</button>
-        </div>
-      </div>
-
-      <div
-        class="bg-purple-50 p-6 rounded-xl border border-purple-100 hover:shadow-lg transition"
-        data-aos="fade-up"
-        data-aos-delay="100"
-      >
-        <div class="flex justify-between items-start mb-4">
-          <div>
-            <h3 class="font-bold text-gray-900">Technical Support Specialist</h3>
-            <span class="text-green-600 text-xs font-bold uppercase">Part-Time</span>
-          </div>
-        </div>
-        <div class="flex gap-3 mt-6">
-          <button class="flex-1 py-2 border border-gray-300 rounded text-sm font-medium hover:border-brand-purple hover:text-brand-purple transition">View details</button>
-          <button class="flex-1 py-2 bg-brand-purple text-white rounded text-sm font-medium hover:bg-brand-dark transition">Apply now</button>
-        </div>
-      </div>
-
-      <div
-        class="bg-purple-50 p-6 rounded-xl border border-purple-100 hover:shadow-lg transition"
-        data-aos="fade-up"
-        data-aos-delay="200"
-      >
-        <div class="flex justify-between items-start mb-4">
-          <div>
-            <h3 class="font-bold text-gray-900">Senior UI/UX Designer</h3>
-            <span class="text-brand-purple text-xs font-bold uppercase">Full-Time</span>
-          </div>
-        </div>
-        <div class="flex gap-3 mt-6">
-          <button class="flex-1 py-2 border border-gray-300 rounded text-sm font-medium hover:border-brand-purple hover:text-brand-purple transition">View details</button>
-          <button class="flex-1 py-2 bg-brand-purple text-white rounded text-sm font-medium hover:bg-brand-dark transition">Apply now</button>
-        </div>
-      </div>
-
-      <div
-        class="bg-purple-50 p-6 rounded-xl border border-purple-100 hover:shadow-lg transition"
-        data-aos="fade-up"
-        data-aos-delay="300"
-      >
-        <div class="flex justify-between items-start mb-4">
-          <div>
-            <h3 class="font-bold text-gray-900">Marketing Officer</h3>
-            <span class="text-brand-purple text-xs font-bold uppercase">Part-Time</span>
-          </div>
-        </div>
-        <div class="flex gap-3 mt-6">
-          <button class="flex-1 py-2 border border-gray-300 rounded text-sm font-medium hover:border-brand-purple hover:text-brand-purple transition">View details</button>
-          <button class="flex-1 py-2 bg-brand-purple text-white rounded text-sm font-medium hover:bg-brand-dark transition">Apply now</button>
-        </div>
-      </div>
-    </div>
-
+     
     <div 
       class="text-center mt-10"
       data-aos="zoom-in"

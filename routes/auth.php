@@ -3,10 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Authentication\SocialController;
 use App\Http\Controllers\Authentication\UserAuthentication;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\JobsController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('/');
+Route::get('/', [JobsController::class, 'index'])->name('/');
 Route::get('/register', function () {
     return view('userAuthentication.signup');
 })->name('register');
