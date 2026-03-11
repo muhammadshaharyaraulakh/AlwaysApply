@@ -24,8 +24,6 @@
 
       <div
         class="bg-white p-2 rounded-lg shadow-lg flex flex-col md:flex-col lg:flex-row items-center gap-2 border border-gray-100 w-full"
-        data-aos="fade-right"
-        data-aos-delay="200"
       >
         <div
           class="flex items-center px-4 w-full lg:w-auto flex-grow border-b md:border-b-0 lg:border-b-0 lg:border-r border-gray-200 py-3 md:py-0"

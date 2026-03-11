@@ -6,16 +6,16 @@ use App\Http\Controllers\Authentication\UserAuthentication;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('/');
 Route::get('/register', function () {
     return view('userAuthentication.signup');
 })->name('register');
 Route::post('/register', [UserAuthentication::class, 'registrationOtp'])->name('register.otp');
 Route::post('/verify', [UserAuthentication::class, 'verify'])->name('verify.otp');
 Route::view('/confirm-email', 'userAuthentication.confirmEmail')->name('confirm.email');
-Route::post('/logout', function () {
+Route::get('/logout', function () {
     Auth::logout();
-    return redirect()->route('login');
+    return redirect()->route('/');
 })->name('logout');
 
 Route::get('/login', function () {
