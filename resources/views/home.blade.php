@@ -179,7 +179,7 @@
     </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-  @foreach($jobs as $job)
+  @foreach($jobs->slice(0, 9) as $job)
     <div
         class="bg-purple-50 p-6 rounded-xl border border-purple-100 hover:shadow-lg transition"
         data-aos="fade-up"

@@ -24,4 +24,9 @@ class JobsController extends Controller
     $jobs = Alljob::with('company')->get();
     return view('home', compact('jobs'));
 }
+public function jobs()
+{
+    $jobs = Alljob::with('company')->paginate(4);
+    return view('userPages.joblisting', compact('jobs'));
+}
 }
