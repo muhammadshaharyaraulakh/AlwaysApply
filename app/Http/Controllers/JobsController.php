@@ -87,7 +87,7 @@ public function searchjob(Request $request)
         $query->whereHas('company', function ($q) use ($location) {
             $q->where('location', 'LIKE', "%{$location}%");
         });
-    })
+    })->where('status', 'Actively Hiring')
     ->paginate(6);
 
     return view('userPages.joblisting', compact('jobs'));
