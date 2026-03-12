@@ -13,4 +13,6 @@ Route::get('/company/{id}', [JobsController::class, 'company'])->name('company.j
 Route::post('/searchhome', [JobsController::class, 'search'])->name('search.home');
 Route::get('/job/{id}', [JobsController::class, 'job'])->name('job');
 Route::post('/search', [JobsController::class, 'searchjob'])->name('search');
+Route::view('/dashboard','userPages.dashboard');
+Route::view('/profile','userPages.profile');
 require __DIR__.'/auth.php';

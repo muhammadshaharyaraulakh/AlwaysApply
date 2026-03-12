@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('profiles', function (Blueprint $table) {
+            $table->id();
+            $table->string('coverImage')->nullable();
+            $table->string('profileImage')->nullable();
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('address');
+            $table->text('ProfessionalHeadline');
+            $table->text('status');
+            $table->text('location');
+            $table->string('facebook');
+            $table->string('linkedin');
+            $table->string('github');
+            $table->string('instagram');
+            $table->string('resume');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('profiles');
+    }
+};
