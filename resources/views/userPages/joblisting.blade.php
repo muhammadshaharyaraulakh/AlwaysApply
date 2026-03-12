@@ -4,6 +4,8 @@
   <p class="text-gray-500 mt-1 mb-8">
     Search for your desired job matching your skills
   </p>
+  <form action="{{route('search')}}" method="post">
+    @csrf
 
   <div
     class="bg-white p-2 rounded-lg shadow-sm border border-gray-200 flex flex-col md:flex-row items-center"
@@ -14,6 +16,7 @@
       <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
       <input
         type="text"
+        name="title"
         placeholder="Enter Job title"
         class="w-full outline-none text-gray-600 text-sm placeholder-gray-400"
       />
@@ -24,6 +27,7 @@
       <i class="fa-solid fa-location-dot text-gray-400"></i>
       <input
         type="text"
+        name="location"
         placeholder="Enter location"
         class="w-full outline-none text-gray-600 text-sm placeholder-gray-400"
       />
@@ -32,7 +36,8 @@
       <i class="fa-solid fa-briefcase text-gray-400"></i>
       <input
         type="text"
-        placeholder="Years of experience"
+        name="type"
+        placeholder="Job Type (e.g. Full-time)"
         class="w-full outline-none text-gray-600 text-sm placeholder-gray-400"
       />
     </div>
@@ -42,6 +47,7 @@
       Search
     </button>
   </div>
+  </form>
 </div>
 
 <section

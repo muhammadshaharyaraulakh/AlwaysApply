@@ -21,7 +21,8 @@
       >
         Thousands of jobs in all the leading sector are waiting for you.
       </p>
-
+     <form action="{{route('search.home')}}" method="post">
+      @csrf
       <div
         class="bg-white p-2 rounded-lg shadow-lg flex flex-col md:flex-col lg:flex-row items-center gap-2 border border-gray-100 w-full"
       >
@@ -31,6 +32,7 @@
           <i class="fa-solid fa-magnifying-glass text-gray-400 mr-3"></i>
           <input
             type="text"
+            name="title"
             placeholder="Job title, Keyword"
             class="w-full outline-none text-gray-600 placeholder-gray-400"
           />
@@ -41,16 +43,18 @@
           <i class="fa-solid fa-location-dot text-gray-400 mr-3"></i>
           <input
             type="text"
+            name="location"
             placeholder="Location"
             class="w-full outline-none text-gray-600 placeholder-gray-400"
           />
         </div>
         <button
-          class="w-full lg:w-auto px-8 py-3 bg-brand-purple text-white font-medium rounded-md hover:bg-brand-dark transition"
+          class="w-full cursor-pointer lg:w-auto px-8 py-3 bg-brand-purple text-white font-medium rounded-md hover:bg-brand-dark transition"
         >
           Search
         </button>
       </div>
+      </form>
 
       <p 
         class="text-sm text-gray-500 mt-6"
