@@ -337,4 +337,47 @@ public function deleteExperience(Request $request)
     Experience::where('id', $request->id)->where('user_id', Auth::id())->delete();
     return response()->json(['status' => true, 'message' => 'Experience deleted']);
 }
+
+public function addCover(Request $request) {
+    $request->validate([
+        'coverImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    $user_id = Auth::id();
+    $profile = Profile::where('user_id', $user_id)->first();
+
+    if ($request->hasFile('coverImage')) {
+        $file = $request->file('coverImage');
+        
+        // 1. Generate a unique name
+        $filename = 'cover_' . $user_id . '_' . time() . '.' . $file->getClientOriginalExtension();
+        
+        // 2. Upload the actual file to storage/app/public/uploads
+        $file->storeAs('uploads', $filename, 'public');
+
+        if ($profile) {
+            // 3. Delete the OLD file from the physical folder using the name stored in DB
+            if ($profile->coverImage) {
+                Storage::disk('public')->delete('uploads/' . $profile->coverImage);
+            }
+
+            // 4. Update DB with just the NEW filename string
+            $profile->update([
+                'coverImage' => $filename
+            ]);
+        } else {
+            // Create new record if user doesn't have a profile yet
+            Profile::create([
+                'user_id' => $user_id,
+                'coverImage' => $filename,
+            ]);
+        }
+
+        return response()->json([
+            'status' => true, 
+            'message' => 'Cover updated!',
+            'image_url' => asset('storage/uploads/' . $filename)
+        ]);
+    }
+}
 }

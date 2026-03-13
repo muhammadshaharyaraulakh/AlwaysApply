@@ -73,9 +73,7 @@
 
       <div class="flex-1">
         <div id="section-home" class="dashboard-section space-y-6 block">
-          <div
-            class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-2 gap-4"
-          >
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-2 gap-4">
             <div>
               <h1 class="text-2xl md:text-3xl font-bold text-gray-900">
                 Welcome back, Anil! <span class="text-brand-purple">👋</span>
@@ -86,8 +84,7 @@
             </div>
             <a
               href="/jobs"
-              class="px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-semibold rounded-lg shadow-sm hover:bg-gray-50 hover:text-brand-purple transition cursor-pointer flex items-center gap-2 text-sm"
-            >
+              class="px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-semibold rounded-lg shadow-sm hover:bg-gray-50 hover:text-brand-purple transition cursor-pointer flex items-center gap-2 text-sm">
               <i class="fa-solid fa-magnifying-glass"></i> Explore Jobs
             </a>
           </div>
@@ -353,269 +350,136 @@
             </div>
           </div>
         </div>
-        <div
-          id="section-profile-info"
-          class="dashboard-section space-y-6 hidden"
-        >
-          <div>
-            <h1 class="text-2xl font-bold text-gray-900">Edit Profile</h1>
-            <p class="text-gray-500 text-sm mt-1">
-              Update your personal details, banner, and digital footprint.
-            </p>
+       <div id="section-profile-info" class="dashboard-section space-y-6">
+  <div>
+    <h1 class="text-2xl font-bold text-gray-900">Edit Profile</h1>
+    <p class="text-gray-500 text-sm mt-1">
+      Update your personal details, banner, and digital footprint.
+    </p>
+  </div>
+
+  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+    <form id="form-cover-photo" action="" method="POST" enctype="multipart/form-data">
+      <div class="mb-2 border-gray-100">
+        <div class="flex justify-between items-end mb-2">
+          <h3 class="font-bold text-gray-900 text-sm">Cover Photo</h3>
+          <p class="text-xs text-gray-500">Recommended: 1200 x 300px</p>
+        </div>
+        <div class="relative group cursor-pointer w-full h-32 md:h-40 rounded-xl overflow-hidden bg-gradient-to-r from-brand-purple to-purple-400 border border-gray-200">
+          <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200">
+            <i class="fa-solid fa-camera text-white text-2xl mb-1"></i>
+            <span class="text-white text-sm font-medium">Change Cover Photo</span>
           </div>
+          <input type="file" name="cover_photo" onchange="this.form.submit()" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" accept="image/jpeg, image/png" />
+        </div>
+      </div>
+    </form>
+  </div>
 
-          <div
-            class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8"
-          >
-            <form class="space-y-6">
-              <div class="mb-6 border-b border-gray-100 pb-8">
-                <div class="flex justify-between items-end mb-2">
-                  <h3 class="font-bold text-gray-900 text-sm">Cover Photo</h3>
-                  <p class="text-xs text-gray-500">Recommended: 1200 x 300px</p>
-                </div>
-                <div
-                  class="relative group cursor-pointer w-full h-32 md:h-40 rounded-xl overflow-hidden bg-gradient-to-r from-brand-purple to-purple-400 border border-gray-200"
-                >
-                  <div
-                    class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200"
-                  >
-                    <i class="fa-solid fa-camera text-white text-2xl mb-1"></i>
-                    <span class="text-white text-sm font-medium"
-                      >Change Cover Photo</span
-                    >
-                  </div>
-                  <input
-                    type="file"
-                    class="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                    accept="image/jpeg, image/png"
-                  />
-                </div>
-              </div>
+  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+    <div class="flex items-center gap-5">
+      <form id="form-avatar" action="/profile/avatar" method="POST" enctype="multipart/form-data">
+        <div class="relative group cursor-pointer w-20 h-20 rounded-full overflow-hidden border-2 border-gray-200 shrink-0">
+          <img src="https://ui-avatars.com/api/?name=Anil&background=f3e8ff&color=6300B3&size=150" alt="Avatar" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <i class="fa-solid fa-camera text-white"></i>
+          </div>
+          <input type="file" name="avatar" onchange="this.form.submit()" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" accept="image/jpeg, image/png" />
+        </div>
+      </form>
 
-              <div
-                class="flex items-center gap-5 pb-8 border-b border-gray-100"
-              >
-                <div
-                  class="relative group cursor-pointer w-20 h-20 rounded-full overflow-hidden border-2 border-gray-200 shrink-0"
-                >
-                  <img
-                    src="https://ui-avatars.com/api/?name=Anil&background=f3e8ff&color=6300B3&size=150"
-                    alt="Avatar"
-                    class="w-full h-full object-cover"
-                  />
-                  <div
-                    class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
-                  >
-                    <i class="fa-solid fa-camera text-white"></i>
-                  </div>
-                  <input
-                    type="file"
-                    class="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                    accept="image/jpeg, image/png"
-                  />
-                </div>
-                <div>
-                  <h3 class="font-bold text-gray-900 text-sm">
-                    Profile Picture
-                  </h3>
-                  <p class="text-xs text-gray-500 mb-2">PNG, JPG up to 2MB</p>
-                  <button
-                    type="button"
-                    class="text-xs font-semibold text-red-500 hover:text-red-700 transition cursor-pointer"
-                  >
-                    Remove photo
-                  </button>
-                </div>
-              </div>
+      <div>
+        <h3 class="font-bold text-gray-900 text-sm">Profile Picture</h3>
+        <p class="text-xs text-gray-500 mb-2">PNG, JPG up to 2MB</p>
+        <form action="/profile/avatar/remove" method="POST">
+          <button type="submit" class="text-xs font-semibold text-red-500 hover:text-red-700 transition cursor-pointer">
+            Remove photo
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Full Name *</label
-                  >
-                  <input
-                    type="text"
-                    value="Anil"
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  />
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Professional Headline *</label
-                  >
-                  <input
-                    type="text"
-                    value="Backend PHP & Laravel Developer"
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  />
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Email Address *</label
-                  >
-                  <input
-                    type="email"
-                    value="anil@example.com"
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                    readonly
-                  />
-                  <p class="text-[10px] text-gray-400 mt-1">
-                    Email cannot be changed directly.
-                  </p>
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Phone Number</label
-                  >
-                  <input
-                    type="tel"
-                    value="+92 300 1234567"
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  />
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Availability Status</label
-                  >
-                  <select
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  >
-                    <option>Actively Looking</option>
-                    <option selected>Available for Internship</option>
-                    <option>Not Looking</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Location</label
-                  >
-                  <input
-                    type="text"
-                    value="Islamabad, Pakistan"
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  />
-                </div>
-              </div>
+  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+    <form id="form-general-info" action="/profile/info" method="POST" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Full Name *</label>
+          <input type="text" name="name" value="Anil" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Professional Headline *</label>
+          <input type="text" name="headline" value="Backend PHP & Laravel Developer" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Email Address *</label>
+          <input type="email" value="anil@example.com" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" readonly />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Phone Number</label>
+          <input type="tel" name="phone" value="+92 300 1234567" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Availability Status</label>
+          <select name="status" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition">
+            <option>Actively Looking</option>
+            <option selected>Available for Internship</option>
+            <option>Not Looking</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Location</label>
+          <input type="text" name="location" value="Islamabad, Pakistan" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+        </div>
+      </div>
 
-              <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1"
-                  >About Me (Bio)</label
-                >
-                <textarea
-                  rows="4"
-                  class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition resize-none"
-                >
-Passionate backend developer with a strong focus on PHP and Laravel. I enjoy building secure REST APIs and clean, responsive user interfaces using Tailwind CSS.</textarea
-                >
-              </div>
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">About Me (Bio)</label>
+        <textarea name="bio" rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition resize-none">Passionate backend developer...</textarea>
+      </div>
 
-              <div class="border-t border-gray-100 pt-6 mt-6">
-                <h3 class="font-bold text-gray-900 text-sm mb-4">
-                  Digital Footprint
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div class="relative">
-                    <div
-                      class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none"
-                    >
-                      <i
-                        class="fa-brands fa-linkedin text-[#0A66C2] text-lg"
-                      ></i>
-                    </div>
-                    <input
-                      type="url"
-                      placeholder="linkedin.com/in/username"
-                      value="linkedin.com/in/anil"
-                      class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                    />
-                  </div>
-
-                  <div class="relative">
-                    <div
-                      class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none"
-                    >
-                      <i class="fa-brands fa-github text-gray-800 text-lg"></i>
-                    </div>
-                    <input
-                      type="url"
-                      placeholder="github.com/username"
-                      value="github.com/anil-dev"
-                      class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                    />
-                  </div>
-
-                  <div class="relative">
-                    <div
-                      class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none"
-                    >
-                      <i
-                        class="fa-brands fa-facebook text-[#1877F2] text-lg"
-                      ></i>
-                    </div>
-                    <input
-                      type="url"
-                      placeholder="facebook.com/username"
-                      class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                    />
-                  </div>
-
-                  <div class="relative">
-                    <div
-                      class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none"
-                    >
-                      <i
-                        class="fa-brands fa-instagram text-[#E4405F] text-lg"
-                      ></i>
-                    </div>
-                    <input
-                      type="url"
-                      placeholder="instagram.com/username"
-                      class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div class="border-t border-gray-100 pt-6 mt-6">
-                <label class="block text-sm font-semibold text-gray-700 mb-2"
-                  >Update Resume (PDF only)</label
-                >
-                <div class="relative group cursor-pointer">
-                  <input
-                    type="file"
-                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                    accept="application/pdf"
-                  />
-                  <div
-                    class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center group-hover:border-brand-purple group-hover:bg-purple-50 transition duration-200"
-                  >
-                    <i
-                      class="fa-solid fa-file-pdf text-3xl text-gray-400 group-hover:text-brand-purple mb-2 transition"
-                    ></i>
-                    <p class="text-sm font-medium text-brand-purple">
-                      Click to upload new resume
-                      <span class="text-gray-500 font-normal"
-                        >or drag and drop</span
-                      >
-                    </p>
-                    <p class="text-xs text-gray-400 mt-1">
-                      Currently uploaded: anil_cv_2026.pdf
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="pt-4 flex justify-end">
-                <button
-                  type="submit"
-                  class="w-full sm:w-auto px-8 py-3 bg-brand-purple text-white font-bold rounded-lg shadow-md hover:bg-brand-dark transition transform active:scale-[0.98] cursor-pointer"
-                >
-                  Save Changes
-                </button>
-              </div>
-            </form>
+      <div class="border-t border-gray-100 pt-6 mt-6">
+        <h3 class="font-bold text-gray-900 text-sm mb-4">Digital Footprint</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+              <i class="fa-brands fa-linkedin text-[#0A66C2] text-lg"></i>
+            </div>
+            <input type="url" name="linkedin" value="linkedin.com/in/anil" class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+          </div>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+              <i class="fa-brands fa-github text-gray-800 text-lg"></i>
+            </div>
+            <input type="url" name="github" value="github.com/anil-dev" class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
           </div>
         </div>
+      </div>
+
+      <div class="pt-4 flex justify-end">
+        <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-brand-purple text-white font-bold rounded-lg shadow-md hover:bg-brand-dark transition transform active:scale-[0.98]">
+          Save General Info
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+    <form id="form-resume" action="/profile/resume" method="POST" enctype="multipart/form-data">
+      <label class="block text-sm font-semibold text-gray-700 mb-2">Update Resume (PDF only)</label>
+      <div class="relative group cursor-pointer">
+        <input type="file" name="resume" onchange="this.form.submit()" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" accept="application/pdf" />
+        <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center group-hover:border-brand-purple group-hover:bg-purple-50 transition duration-200">
+          <i class="fa-solid fa-file-pdf text-3xl text-gray-400 group-hover:text-brand-purple mb-2 transition"></i>
+          <p class="text-sm font-medium text-brand-purple">
+            Click to upload new resume <span class="text-gray-500 font-normal">or drag and drop</span>
+          </p>
+          <p class="text-xs text-gray-400 mt-1">Currently uploaded: anil_cv_2026.pdf</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
         <div
           id="section-applications"
           class="dashboard-section space-y-6 hidden"
@@ -863,7 +727,7 @@ async function loadExperiences() {
         const res = await fetch('/experience/all');
         const data = await res.json();
         const container = document.getElementById('experience-list');
-        
+
         if (data.experiences.length === 0) {
             container.innerHTML = `<p class="text-center text-gray-400">No experience added yet.</p>`;
             return;
@@ -896,7 +760,7 @@ async function loadExperiences() {
 async function saveExperience() {
     const id = document.getElementById('exp_id').value;
     const url = id ? `/experience/edit/${id}` : '/experience/add';
-    
+
     // Clear previous errors
     document.querySelectorAll('.err-msg').forEach(el => el.innerText = "");
 
@@ -951,7 +815,7 @@ async function editExperience(id) {
         document.getElementById('exp_start_month').value = exp.start_month;
         document.getElementById('exp_start_year').value = exp.start_year;
         document.getElementById('exp_description').value = exp.description;
-        
+
         const isCurrent = !exp.end_year;
         document.getElementById('exp_current').checked = isCurrent;
         if (!isCurrent) {
@@ -968,7 +832,7 @@ async function editExperience(id) {
 
 async function deleteExperience(id) {
     if (!confirm('Are you sure you want to delete this experience?')) return;
-    
+
     try {
         const res = await fetch('/experience/delete', {
             method: 'POST',
@@ -1006,7 +870,7 @@ async function deleteExperience(id) {
 
     <form id="education-form" class="space-y-5">
       <input type="hidden" name="id" id="edu-field-id">
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <label class="block text-sm font-semibold text-gray-700 mb-1">Degree / Certificate *</label>
@@ -1074,7 +938,7 @@ async function deleteExperience(id) {
     const startSelect = document.getElementById('edu-start');
     const endSelect = document.getElementById('edu-completed');
     const currentYear = 2026;
-    
+
     for (let i = currentYear + 5; i >= 1990; i--) {
       const opt = `<option value="${i}">${i}</option>`;
       startSelect.insertAdjacentHTML('beforeend', opt);
@@ -1126,7 +990,7 @@ async function deleteExperience(id) {
         document.getElementById('edu-start').value = data.education.start;
         document.getElementById('edu-completed').value = data.education.completed;
         document.getElementById('edu-description').value = data.education.description;
-        
+
         document.getElementById('edu-form-heading').innerText = "Edit Education";
         document.getElementById("education-list").classList.add("hidden");
         document.getElementById("education-form-container").classList.remove("hidden");
@@ -1154,7 +1018,7 @@ async function deleteExperience(id) {
       const res = await fetch(url, {
         method: 'POST',
         body: formData,
-        headers: { 
+        headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
             'X-Requested-With': 'XMLHttpRequest'
         }
@@ -1303,7 +1167,7 @@ async function deleteExperience(id) {
                 document.getElementById('field-url').value = data.project.link;
                 document.getElementById('field-description').value = data.project.description;
                 document.getElementById('field-technologies').value = data.project.technologies;
-                
+
                 document.getElementById('form-heading').innerText = "Edit Project";
                 document.getElementById("projects-list").classList.add("hidden");
                 document.getElementById("project-form-container").classList.remove("hidden");
@@ -1361,7 +1225,7 @@ async function deleteExperience(id) {
     });
 
     async function deleteProject(id) {
-        
+
         try {
             await fetch(PROJECT_ROUTES.delete, {
                 method: 'POST',
@@ -1433,7 +1297,7 @@ async function deleteExperience(id) {
 </section>
 
 <script>
-  function switchTab(sectionId, clickedButton) {
+   function switchTab(sectionId, clickedButton) {
     const sections = document.querySelectorAll(".dashboard-section");
     sections.forEach((section) => {
       section.classList.add("hidden");
@@ -1460,14 +1324,14 @@ async function deleteExperience(id) {
 async function fetchSkills() {
   try {
     const response = await fetch("{{ route('show.skills') }}", {
-      headers: { 
+      headers: {
         'Accept': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest' 
+        'X-Requested-With': 'XMLHttpRequest'
       }
     });
 
     const data = await response.json();
-    console.log("Server Response:", data); 
+    console.log("Server Response:", data);
 
     if (data.skills) {
       renderSkillsList(data.skills);
@@ -1547,7 +1411,7 @@ async function fetchSkills() {
   }
 
   async function deleteAllSkills() {
-   
+
     const token = document.querySelector('input[name="_token"]')?.value;
     try {
       await fetch("{{ route('delete.all') }}", {
@@ -1569,3 +1433,5 @@ async function fetchSkills() {
 </script>
 
 <x-footer />
+</body>
+</html>
