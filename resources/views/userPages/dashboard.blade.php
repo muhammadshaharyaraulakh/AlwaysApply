@@ -1002,663 +1002,589 @@ Passionate backend developer with a strong focus on PHP and Laravel. I enjoy bui
           }
         </script>
 
-        <div id="section-education" class="dashboard-section space-y-6 hidden">
-          <div class="flex justify-between items-center mb-6">
-            <div>
-              <h1 class="text-2xl font-bold text-gray-900">Education</h1>
-              <p class="text-gray-500 text-sm mt-1">
-                Add your academic background and qualifications.
-              </p>
-            </div>
-            <button
-              onclick="toggleEducationForm()"
-              class="px-5 py-2.5 bg-brand-purple text-white text-sm font-bold rounded-lg shadow-md hover:bg-brand-dark transition cursor-pointer flex items-center gap-2"
-            >
-              <i class="fa-solid fa-plus"></i> Add Education
-            </button>
-          </div>
 
-          <div
-            id="education-list"
-            class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 block"
-          >
-            <div class="relative border-l-2 border-gray-100 ml-3 space-y-10">
-              <div class="relative pl-6 group">
-                <div
-                  class="absolute -left-[9px] top-1 w-4 h-4 bg-white border-2 border-brand-purple rounded-full"
-                ></div>
-                <h3 class="font-bold text-gray-900 text-lg">
-                  BS Computer Science
-                </h3>
-                <p class="text-sm font-medium text-gray-700 mb-1">
-                  National University
-                </p>
-                <p class="text-xs text-gray-500 mb-2">2022 - 2026</p>
-                <p class="text-sm text-gray-600">
-                  Focusing on Software Engineering, Backend Architecture, and
-                  Database Systems.
-                </p>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<div id="section-education" class="dashboard-section space-y-6">
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900">Education</h1>
+      <p class="text-gray-500 text-sm mt-1">Add your academic background and qualifications.</p>
+    </div>
+    <button onclick="openEducationAddForm()" class="px-5 py-2.5 bg-brand-purple text-white text-sm font-bold rounded-lg shadow-md hover:bg-brand-dark transition cursor-pointer flex items-center gap-2">
+      Add Education
+    </button>
+  </div>
 
-                <div class="flex gap-3 mt-4">
-                  <button
-                    class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-red-500 hover:text-red-500 transition cursor-pointer"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onclick="toggleEducationForm()"
-                    class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-brand-purple hover:text-brand-purple transition cursor-pointer"
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
+  <div id="education-list" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 block">
+    <div id="education-timeline" class="relative border-l-2 border-gray-100 ml-3 space-y-10">
+      </div>
+  </div>
 
-              <div class="relative pl-6 group">
-                <div
-                  class="absolute -left-[9px] top-1 w-4 h-4 bg-white border-2 border-gray-300 group-hover:border-brand-purple transition rounded-full"
-                ></div>
-                <h3 class="font-bold text-gray-900 text-lg">
-                  Intermediate (ICS)
-                </h3>
-                <p class="text-sm font-medium text-gray-700 mb-1">
-                  Punjab College
-                </p>
-                <p class="text-xs text-gray-500 mb-2">2020 - 2022</p>
-                <p class="text-sm text-gray-600">
-                  Computer Science, Mathematics, and Physics.
-                </p>
+  <div id="education-form-container" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hidden">
+    <h2 id="edu-form-heading" class="text-xl font-bold text-gray-900 mb-5 border-b border-gray-100 pb-3">Education Details</h2>
 
-                <div class="flex gap-3 mt-4">
-                  <button
-                    class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-red-500 hover:text-red-500 transition cursor-pointer"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onclick="toggleEducationForm()"
-                    class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-brand-purple hover:text-brand-purple transition cursor-pointer"
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-
-              <div class="relative pl-6 group">
-                <div
-                  class="absolute -left-[9px] top-1 w-4 h-4 bg-white border-2 border-gray-300 group-hover:border-brand-purple transition rounded-full"
-                ></div>
-                <h3 class="font-bold text-gray-900 text-lg">Matriculation</h3>
-                <p class="text-sm font-medium text-gray-700 mb-1">
-                  High School Islamabad
-                </p>
-                <p class="text-xs text-gray-500 mb-2">2018 - 2020</p>
-                <p class="text-sm text-gray-600">Science Group.</p>
-
-                <div class="flex gap-3 mt-4">
-                  <button
-                    class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-red-500 hover:text-red-500 transition cursor-pointer"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onclick="toggleEducationForm()"
-                    class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-brand-purple hover:text-brand-purple transition cursor-pointer"
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            id="education-form-container"
-            class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hidden"
-          >
-            <h2
-              class="text-xl font-bold text-gray-900 mb-5 border-b border-gray-100 pb-3"
-            >
-              Education Details
-            </h2>
-
-            <form class="space-y-5">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Degree / Certificate *</label
-                  >
-                  <input
-                    type="text"
-                    placeholder="e.g. BS Computer Science"
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  />
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Institution / University *</label
-                  >
-                  <input
-                    type="text"
-                    placeholder="e.g. National University"
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  />
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Start Year *</label
-                  >
-                  <select
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  >
-                    <option value="" disabled selected>Select Year</option>
-                    <option>2026</option>
-                    <option>2025</option>
-                    <option>2024</option>
-                    <option>2023</option>
-                    <option>2022</option>
-                    <option>2021</option>
-                    <option>2020</option>
-                    <option>2019</option>
-                    <option>2018</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >End Year (or expected) *</label
-                  >
-                  <select
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  >
-                    <option value="" disabled selected>Select Year</option>
-                    <option>2028</option>
-                    <option>2027</option>
-                    <option>2026</option>
-                    <option>2025</option>
-                    <option>2024</option>
-                    <option>2023</option>
-                    <option>2022</option>
-                    <option>2021</option>
-                    <option>2020</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1"
-                  >Description (Optional)</label
-                >
-                <textarea
-                  rows="3"
-                  placeholder="Extracurriculars, core subjects, or awards..."
-                  class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition resize-none"
-                ></textarea>
-              </div>
-
-              <div
-                class="pt-4 flex flex-col sm:flex-row gap-3 justify-end border-t border-gray-100 mt-6"
-              >
-                <button
-                  type="button"
-                  onclick="cancelEducationForm()"
-                  class="px-6 py-2.5 border border-gray-300 text-gray-700 font-bold rounded-lg hover:border-gray-400 transition cursor-pointer order-2 sm:order-1"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  class="px-6 py-2.5 bg-brand-purple text-white font-bold rounded-lg hover:bg-brand-dark transition shadow-md cursor-pointer order-1 sm:order-2"
-                >
-                  Save Education
-                </button>
-              </div>
-            </form>
-          </div>
+    <form id="education-form" class="space-y-5">
+      <input type="hidden" name="id" id="edu-field-id">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Degree / Certificate *</label>
+          <input type="text" name="name" id="edu-name" placeholder="e.g. BS Computer Science" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+          <p class="edu-error text-xs text-red-500 mt-1 hidden" id="error-edu-name"></p>
         </div>
-
-        <script>
-          function toggleEducationForm() {
-            document.getElementById("education-list").classList.add("hidden");
-            document.getElementById("education-list").classList.remove("block");
-
-            document
-              .getElementById("education-form-container")
-              .classList.remove("hidden");
-            document
-              .getElementById("education-form-container")
-              .classList.add("block");
-          }
-
-          function cancelEducationForm() {
-            document
-              .getElementById("education-form-container")
-              .classList.add("hidden");
-            document
-              .getElementById("education-form-container")
-              .classList.remove("block");
-
-            document
-              .getElementById("education-list")
-              .classList.remove("hidden");
-            document.getElementById("education-list").classList.add("block");
-          }
-        </script>
-
-        <div id="section-projects" class="dashboard-section space-y-6 hidden">
-          <div class="flex justify-between items-center mb-6">
-            <div>
-              <h1 class="text-2xl font-bold text-gray-900">Projects</h1>
-              <p class="text-gray-500 text-sm mt-1">
-                Showcase your best work to stand out to employers.
-              </p>
-            </div>
-            <button
-              onclick="toggleProjectForm()"
-              class="px-5 py-2.5 bg-brand-purple text-white text-sm font-bold rounded-lg shadow-md hover:bg-brand-dark transition cursor-pointer flex items-center gap-2"
-            >
-              <i class="fa-solid fa-plus"></i> Add Project
-            </button>
-          </div>
-
-          <div
-            id="projects-list"
-            class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 block"
-          >
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div
-                class="border border-gray-200 rounded-xl flex flex-col hover:border-brand-purple hover:shadow-md transition group overflow-hidden p-5"
-              >
-                <div class="flex justify-between items-start mb-2">
-                  <h3
-                    class="font-bold text-gray-900 group-hover:text-brand-purple transition text-lg leading-tight"
-                  >
-                    AI Digital Marketing Engine
-                  </h3>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-brand-purple transition"
-                    ><i class="fa-solid fa-arrow-up-right-from-square"></i
-                  ></a>
-                </div>
-                <p class="text-sm text-gray-500 mb-4 line-clamp-2">
-                  Final year project. A web-based analytics engine designed to
-                  optimize digital marketing workflows using AI-driven insights.
-                </p>
-                <div
-                  class="flex flex-wrap gap-2 text-xs font-medium text-gray-600 flex-1"
-                >
-                  <span
-                    class="bg-gray-100 px-2.5 py-1 rounded-md border border-gray-200"
-                    >PHP</span
-                  >
-                  <span
-                    class="bg-gray-100 px-2.5 py-1 rounded-md border border-gray-200"
-                    >Laravel</span
-                  >
-                </div>
-
-                <div class="flex gap-3 mt-6">
-                  <button
-                    class="flex-1 py-2 border border-gray-300 rounded text-sm font-medium hover:border-red-500 hover:text-red-500 transition cursor-pointer"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onclick="toggleProjectForm()"
-                    class="flex-1 py-2 bg-brand-purple text-white rounded text-sm font-medium hover:bg-brand-dark transition cursor-pointer"
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-
-              <div
-                class="border border-gray-200 rounded-xl flex flex-col hover:border-brand-purple hover:shadow-md transition group overflow-hidden p-5"
-              >
-                <div class="flex justify-between items-start mb-2">
-                  <h3
-                    class="font-bold text-gray-900 group-hover:text-brand-purple transition text-lg leading-tight"
-                  >
-                    Interactive Quiz System
-                  </h3>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-brand-purple transition"
-                    ><i class="fa-solid fa-arrow-up-right-from-square"></i
-                  ></a>
-                </div>
-                <p class="text-sm text-gray-500 mb-4 line-clamp-2">
-                  Developed a complete quiz management system featuring a user
-                  dashboard, live timer, and results tracking.
-                </p>
-                <div
-                  class="flex flex-wrap gap-2 text-xs font-medium text-gray-600 flex-1"
-                >
-                  <span
-                    class="bg-gray-100 px-2.5 py-1 rounded-md border border-gray-200"
-                    >Laravel</span
-                  >
-                  <span
-                    class="bg-gray-100 px-2.5 py-1 rounded-md border border-gray-200"
-                    >Tailwind CSS</span
-                  >
-                </div>
-
-                <div class="flex gap-3 mt-6">
-                  <button
-                    class="flex-1 py-2 border border-gray-300 rounded text-sm font-medium hover:border-red-500 hover:text-red-500 transition cursor-pointer"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onclick="toggleProjectForm()"
-                    class="flex-1 py-2 bg-brand-purple text-white rounded text-sm font-medium hover:bg-brand-dark transition cursor-pointer"
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-
-              <div
-                class="border border-gray-200 rounded-xl flex flex-col hover:border-brand-purple hover:shadow-md transition group overflow-hidden p-5"
-              >
-                <div class="flex justify-between items-start mb-2">
-                  <h3
-                    class="font-bold text-gray-900 group-hover:text-brand-purple transition text-lg leading-tight"
-                  >
-                    RazorPay UI Clone
-                  </h3>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-brand-purple transition"
-                    ><i class="fa-solid fa-arrow-up-right-from-square"></i
-                  ></a>
-                </div>
-                <p class="text-sm text-gray-500 mb-4 line-clamp-2">
-                  A pixel-perfect, fully responsive frontend clone of the
-                  RazorPay landing page to master utility-first CSS design.
-                </p>
-                <div
-                  class="flex flex-wrap gap-2 text-xs font-medium text-gray-600 flex-1"
-                >
-                  <span
-                    class="bg-gray-100 px-2.5 py-1 rounded-md border border-gray-200"
-                    >HTML5</span
-                  >
-                  <span
-                    class="bg-gray-100 px-2.5 py-1 rounded-md border border-gray-200"
-                    >Tailwind CSS</span
-                  >
-                </div>
-
-                <div class="flex gap-3 mt-6">
-                  <button
-                    class="flex-1 py-2 border border-gray-300 rounded text-sm font-medium hover:border-red-500 hover:text-red-500 transition cursor-pointer"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onclick="toggleProjectForm()"
-                    class="flex-1 py-2 bg-brand-purple text-white rounded text-sm font-medium hover:bg-brand-dark transition cursor-pointer"
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            id="project-form-container"
-            class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hidden"
-          >
-            <h2
-              class="text-xl font-bold text-gray-900 mb-5 border-b border-gray-100 pb-3"
-            >
-              Project Details
-            </h2>
-
-            <form class="space-y-5">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Project Title *</label
-                  >
-                  <input
-                    type="text"
-                    placeholder="e.g. E-Commerce API"
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  />
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Project URL / GitHub Link</label
-                  >
-                  <input
-                    type="url"
-                    placeholder="https://github.com/..."
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1"
-                  >Description *</label
-                >
-                <textarea
-                  rows="4"
-                  placeholder="What did you build and what problems did it solve?"
-                  class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition resize-none"
-                ></textarea>
-                <p class="text-xs text-gray-500 mt-1">
-                  Keep it concise. Highlight your specific contributions.
-                </p>
-              </div>
-
-              <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1"
-                  >Technologies Used</label
-                >
-                <input
-                  type="text"
-                  placeholder="e.g. PHP, Laravel, Tailwind CSS"
-                  class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                />
-                <p class="text-xs text-gray-500 mt-1">
-                  Separate technologies with commas.
-                </p>
-              </div>
-
-              <div
-                class="pt-4 flex flex-col sm:flex-row gap-3 justify-end border-t border-gray-100 mt-6"
-              >
-                <button
-                  type="button"
-                  onclick="cancelProjectForm()"
-                  class="px-6 py-2.5 border border-gray-300 text-gray-700 font-bold rounded-lg hover:border-gray-400 transition cursor-pointer order-2 sm:order-1"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  class="px-6 py-2.5 bg-brand-purple text-white font-bold rounded-lg hover:bg-brand-dark transition shadow-md cursor-pointer order-1 sm:order-2"
-                >
-                  Save Project
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <script>
-          function toggleProjectForm() {
-            document.getElementById("projects-list").classList.add("hidden");
-            document.getElementById("projects-list").classList.remove("block");
-
-            document
-              .getElementById("project-form-container")
-              .classList.remove("hidden");
-            document
-              .getElementById("project-form-container")
-              .classList.add("block");
-          }
-
-          function cancelProjectForm() {
-            document
-              .getElementById("project-form-container")
-              .classList.add("hidden");
-            document
-              .getElementById("project-form-container")
-              .classList.remove("block");
-
-            document.getElementById("projects-list").classList.remove("hidden");
-            document.getElementById("projects-list").classList.add("block");
-          }
-        </script>
-
-        <div id="section-skills" class="dashboard-section space-y-6 hidden">
-          <div>
-            <h1 class="text-2xl font-bold text-gray-900">Manage Skills</h1>
-            <p class="text-gray-500 text-sm mt-1">
-              Highlight your expertise. Candidates with 5+ skills are 3x more
-              likely to be noticed by recruiters.
-            </p>
-          </div>
-
-          <div
-            class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8"
-          >
-            <div class="relative flex items-center mb-8">
-              <div
-                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
-              >
-                <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
-              </div>
-              <form  method="post"></form>
-              <input
-                type="text"
-                placeholder="Add Skill like Laravel, PHP, or Tailwind CSS"
-                class="w-full border border-gray-300 rounded-xl pl-11 pr-28 py-4 focus:ring-2 focus:ring-brand-purple focus:border-brand-purple outline-none transition text-gray-700 bg-gray-50 focus:bg-white shadow-inner text-sm md:text-base"
-              />
-              <div class="absolute inset-y-0 right-1.5 flex items-center">
-                <button
-                  class="px-5 py-2.5 bg-brand-purple text-white text-sm font-bold rounded-lg hover:bg-brand-dark transition shadow-md cursor-pointer"
-                >
-                  Add Skill
-                </button>
-              </div>
-              </form>
-            </div>
-
-            <div>
-              <div
-                class="mb-4 flex justify-between items-center border-b border-gray-100 pb-3"
-              >
-                <h3 class="text-gray-800  flex items-center gap-2">
-                  Your Skills
-                  <span
-                    class="bg-purple-100 text-brand-purple text-xs px-2.5 py-0.5 rounded-full"
-                    >3</span
-                  >
-                </h3>
-                <form method="POST">
-                  @csrf
-                  @method('DELETE')
-                <button
-                  class="text-sm text-red-500 hover:text-red-700 font-medium transition cursor-pointer"
-                >
-                  Clear All
-                </button>
-                </form>
-              </div>
-
-              <div class="flex flex-wrap gap-3">
-                <div
-                  class="group flex items-center gap-2 bg-white border border-gray-200 hover:border-brand-purple hover:shadow-sm pl-4 pr-1.5 py-1.5 rounded-full transition duration-200"
-                >
-                  <span
-                    class="text-sm font-medium text-gray-700 group-hover:text-brand-purple transition"
-                    >Laravel</span
-                  >
-                  <button
-                    class="w-7 h-7 flex items-center justify-center rounded-full text-gray-400 hover:bg-red-50 hover:text-red-500 transition duration-200 cursor-pointer"
-                  >
-                    <i class="fa-solid fa-xmark"></i>
-                  </button>
-                </div>
-
-                <div
-                  class="group flex items-center gap-2 bg-white border border-gray-200 hover:border-brand-purple hover:shadow-sm pl-4 pr-1.5 py-1.5 rounded-full transition duration-200"
-                >
-                  <span
-                    class="text-sm font-medium text-gray-700 group-hover:text-brand-purple transition"
-                    >PHP</span
-                  >
-                  <button
-                    class="w-7 h-7 flex items-center justify-center rounded-full text-gray-400 hover:bg-red-50 hover:text-red-500 transition duration-200 cursor-pointer"
-                  >
-                    <i class="fa-solid fa-xmark"></i>
-                  </button>
-                </div>
-
-                <div
-                  class="group flex items-center gap-2 bg-white border border-gray-200 hover:border-brand-purple hover:shadow-sm pl-4 pr-1.5 py-1.5 rounded-full transition duration-200"
-                >
-                  <span
-                    class="text-sm font-medium text-gray-700 group-hover:text-brand-purple transition"
-                    >Tailwind CSS</span
-                  >
-                  <form  method="post">
-                    @csrf
-                    @method('DELETE')
-                  </form>
-                  <input type="hidden" name="id" >
-                  <button
-                    class="w-7 h-7 flex items-center justify-center rounded-full text-gray-400 hover:bg-red-50 hover:text-red-500 transition duration-200 cursor-pointer"
-                  >
-                    <i class="fa-solid fa-xmark"></i>
-                  </button>
-</form>
-                </div>
-              </div>
-            </div>
-
-
-          </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Institution / University *</label>
+          <input type="text" name="institute" id="edu-institute" placeholder="e.g. National University" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+          <p class="edu-error text-xs text-red-500 mt-1 hidden" id="error-edu-institute"></p>
         </div>
       </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Start Year *</label>
+          <select name="start" id="edu-start" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition">
+            <option value="" disabled selected>Select Year</option>
+            </select>
+          <p class="edu-error text-xs text-red-500 mt-1 hidden" id="error-edu-start"></p>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">End Year (or expected) *</label>
+          <select name="completed" id="edu-completed" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition">
+            <option value="" disabled selected>Select Year</option>
+            </select>
+          <p class="edu-error text-xs text-red-500 mt-1 hidden" id="error-edu-completed"></p>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Description (Optional)</label>
+        <textarea rows="3" name="description" id="edu-description" placeholder="Extracurriculars, core subjects, or awards..." class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition resize-none"></textarea>
+        <p class="edu-error text-xs text-red-500 mt-1 hidden" id="error-edu-description"></p>
+      </div>
+
+      <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-end border-t border-gray-100 mt-6">
+        <button type="button" onclick="cancelEducationForm()" class="px-6 py-2.5 border border-gray-300 text-gray-700 font-bold rounded-lg hover:border-gray-400 transition cursor-pointer order-2 sm:order-1">
+          Cancel
+        </button>
+        <button type="submit" class="px-6 py-2.5 bg-brand-purple text-white font-bold rounded-lg hover:bg-brand-dark transition shadow-md cursor-pointer order-1 sm:order-2">
+          Save Education
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const EDU_ROUTES = {
+    fetch: '/education/all',
+    add: '/education/add',
+    show: '/education/show',
+    edit: '/education/edit',
+    delete: '/education/delete'
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchEducation();
+    populateYears();
+  });
+
+  // Populate Year Dropdowns
+  function populateYears() {
+    const startSelect = document.getElementById('edu-start');
+    const endSelect = document.getElementById('edu-completed');
+    const currentYear = 2026;
+    
+    for (let i = currentYear + 5; i >= 1990; i--) {
+      const opt = `<option value="${i}">${i}</option>`;
+      startSelect.insertAdjacentHTML('beforeend', opt);
+      endSelect.insertAdjacentHTML('beforeend', opt);
+    }
+  }
+
+  async function fetchEducation() {
+    try {
+      const res = await fetch(EDU_ROUTES.fetch);
+      const data = await res.json();
+      renderEducation(data.education);
+    } catch (e) { console.error("Education load failed", e); }
+  }
+
+  function renderEducation(education) {
+    const timeline = document.getElementById('education-timeline');
+    timeline.innerHTML = education.length ? education.map(edu => `
+      <div class="relative pl-6 group">
+        <div class="absolute -left-[9px] top-1 w-4 h-4 bg-white border-2 border-brand-purple rounded-full"></div>
+        <h3 class="font-bold text-gray-900 text-lg">${edu.name}</h3>
+        <p class="text-sm font-medium text-gray-700 mb-1">${edu.institute}</p>
+        <p class="text-xs text-gray-500 mb-2">${edu.start} - ${edu.completed}</p>
+        <p class="text-sm text-gray-600">${edu.description || ''}</p>
+        <div class="flex gap-3 mt-4">
+          <button onclick="deleteEducation(${edu.id})" class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-red-500 hover:text-red-500 transition cursor-pointer">Delete</button>
+          <button onclick="editEducationTrigger(${edu.id})" class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-brand-purple hover:text-brand-purple transition cursor-pointer">Edit</button>
+        </div>
+      </div>
+    `).join('') : '<p class="text-gray-400 py-4 pl-6">No education records found.</p>';
+  }
+
+  function openEducationAddForm() {
+    resetEduForm();
+    document.getElementById('edu-form-heading').innerText = "Add Education";
+    document.getElementById("education-list").classList.add("hidden");
+    document.getElementById("education-form-container").classList.remove("hidden");
+  }
+
+  async function editEducationTrigger(id) {
+    resetEduForm();
+    try {
+      const res = await fetch(`${EDU_ROUTES.show}/${id}`);
+      const data = await res.json();
+      if (data.status) {
+        document.getElementById('edu-field-id').value = data.education.id;
+        document.getElementById('edu-name').value = data.education.name;
+        document.getElementById('edu-institute').value = data.education.institute;
+        document.getElementById('edu-start').value = data.education.start;
+        document.getElementById('edu-completed').value = data.education.completed;
+        document.getElementById('edu-description').value = data.education.description;
+        
+        document.getElementById('edu-form-heading').innerText = "Edit Education";
+        document.getElementById("education-list").classList.add("hidden");
+        document.getElementById("education-form-container").classList.remove("hidden");
+      }
+    } catch (e) { alert("Error fetching data"); }
+  }
+
+  function cancelEducationForm() {
+    document.getElementById("education-form-container").classList.add("hidden");
+    document.getElementById("education-list").classList.remove("hidden");
+  }
+
+  function resetEduForm() {
+    document.getElementById('education-form').reset();
+    document.querySelectorAll('.edu-error').forEach(el => el.classList.add('hidden'));
+  }
+
+  document.getElementById('education-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const id = formData.get('id');
+    const url = id ? `${EDU_ROUTES.edit}/${id}` : EDU_ROUTES.add;
+
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: { 
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+      });
+
+      const data = await res.json();
+
+      if (res.status === 422) {
+        Object.keys(data.errors).forEach(key => {
+          const errEl = document.getElementById(`error-edu-${key}`);
+          if (errEl) { errEl.innerText = data.errors[key][0]; errEl.classList.remove('hidden'); }
+        });
+      } else if (data.status) {
+        cancelEducationForm();
+        fetchEducation();
+      }
+    } catch (error) { console.error("Save failed", error); }
+  });
+
+  async function deleteEducation(id) {
+    if (!confirm('Delete this record?')) return;
+    try {
+      await fetch(EDU_ROUTES.delete, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content },
+        body: JSON.stringify({ id })
+      });
+      fetchEducation();
+    } catch (e) { console.error("Delete failed"); }
+  }
+</script>
+<div id="section-projects" class="dashboard-section space-y-6">
+    <div class="flex justify-between items-center mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">Projects</h1>
+            <p class="text-gray-500 text-sm mt-1">Showcase your best work to stand out to employers.</p>
+        </div>
+        <button onclick="openAddForm()" class="px-5 py-2.5 bg-brand-purple text-white text-sm font-bold rounded-lg shadow-md hover:bg-brand-dark transition cursor-pointer flex items-center gap-2">
+            Add Project
+        </button>
+    </div>
+
+    <div id="projects-list" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 block">
+        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            </div>
+    </div>
+
+    <div id="project-form-container" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hidden">
+        <h2 id="form-heading" class="text-xl font-bold text-gray-900 mb-5 border-b border-gray-100 pb-3">Project Details</h2>
+
+        <form id="project-form" class="space-y-5">
+            <input type="hidden" name="id" id="field-id">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Project Title</label>
+                    <input type="text" name="title" id="field-title" placeholder="E-Commerce Store" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+                    <p class="error-msg text-xs text-red-500 mt-1 hidden" id="error-title"></p>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Project URL</label>
+                    <input type="url" name="url" id="field-url" placeholder="https://github.com/..." class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+                    <p class="error-msg text-xs text-red-500 mt-1 hidden" id="error-url"></p>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+                <textarea rows="4" name="description" id="field-description" placeholder="What did you build?" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition resize-none"></textarea>
+                <p class="error-msg text-xs text-red-500 mt-1 hidden" id="error-description"></p>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Technologies Used</label>
+                <input type="text" name="technologies" id="field-technologies" placeholder="PHP, Laravel, Tailwind CSS" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+                <p class="error-msg text-xs text-red-500 mt-1 hidden" id="error-technologies"></p>
+            </div>
+
+            <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-end border-t border-gray-100 mt-6">
+                <button type="button" onclick="cancelProjectForm()" class="px-6 py-2.5 border border-gray-300 text-gray-700 font-bold rounded-lg hover:border-gray-400 transition cursor-pointer order-2 sm:order-1">
+                    Cancel
+                </button>
+                <button type="submit" class="px-6 py-2.5 bg-brand-purple text-white font-bold rounded-lg hover:bg-brand-dark transition shadow-md cursor-pointer order-1 sm:order-2">
+                    Save Project
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const PROJECT_ROUTES = {
+        fetch: '/projects/all',
+        add: '/projects/add',
+        show: '/projects/show',
+        edit: '/projects/edit',
+        delete: '/projects/delete'
+    };
+
+    document.addEventListener('DOMContentLoaded', fetchProjects);
+
+    // Initial Fetch
+    async function fetchProjects() {
+        try {
+            const res = await fetch(PROJECT_ROUTES.fetch);
+            const data = await res.json();
+            renderProjects(data.projects);
+        } catch (e) { console.error("Load failed", e); }
+    }
+
+    function renderProjects(projects) {
+        const grid = document.getElementById('projects-grid');
+        grid.innerHTML = projects.length ? projects.map(p => `
+            <div class="border border-gray-200 rounded-xl flex flex-col hover:border-brand-purple hover:shadow-md transition group overflow-hidden p-5">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-gray-900 group-hover:text-brand-purple transition text-lg leading-tight">${p.title}</h3>
+                    <a href="${p.link}" target="_blank" class="text-gray-400 hover:text-brand-purple transition"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <p class="text-sm text-gray-500 mb-4 line-clamp-2">${p.description}</p>
+                <div class="flex flex-wrap gap-2 text-xs font-medium text-gray-600 flex-1">
+                    ${p.technologies.split(',').map(t => `<span class="bg-gray-100 px-2.5 py-1 rounded-md border border-gray-200">${t.trim()}</span>`).join('')}
+                </div>
+                <div class="flex gap-3 mt-6">
+                    <button onclick="deleteProject(${p.id})" class="flex-1 py-2 border border-gray-300 rounded text-sm font-medium hover:border-red-500 hover:text-red-500 transition cursor-pointer">Delete</button>
+                    <button onclick="editProjectTrigger(${p.id})" class="flex-1 py-2 bg-brand-purple text-white rounded text-sm font-medium hover:bg-brand-dark transition cursor-pointer">Edit</button>
+                </div>
+            </div>
+        `).join('') : '<p class="col-span-full text-center text-gray-400 py-10">No projects added yet.</p>';
+    }
+
+    // Form Navigation
+    function openAddForm() {
+        resetForm();
+        document.getElementById('form-heading').innerText = "Add New Project";
+        document.getElementById("projects-list").classList.add("hidden");
+        document.getElementById("project-form-container").classList.remove("hidden");
+    }
+
+    async function editProjectTrigger(id) {
+        resetForm();
+        try {
+            const res = await fetch(`${PROJECT_ROUTES.show}/${id}`);
+            const data = await res.json();
+            if (data.status) {
+                document.getElementById('field-id').value = data.project.id;
+                document.getElementById('field-title').value = data.project.title;
+                document.getElementById('field-url').value = data.project.link;
+                document.getElementById('field-description').value = data.project.description;
+                document.getElementById('field-technologies').value = data.project.technologies;
+                
+                document.getElementById('form-heading').innerText = "Edit Project";
+                document.getElementById("projects-list").classList.add("hidden");
+                document.getElementById("project-form-container").classList.remove("hidden");
+            }
+        } catch (e) { alert("Failed to fetch data"); }
+    }
+
+    function cancelProjectForm() {
+        document.getElementById("project-form-container").classList.add("hidden");
+        document.getElementById("projects-list").classList.remove("hidden");
+    }
+
+    function resetForm() {
+        document.getElementById('project-form').reset();
+        document.querySelectorAll('.error-msg').forEach(el => { el.classList.add('hidden'); el.innerText = ''; });
+    }
+
+    // Submit Logic
+    document.getElementById('project-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const id = formData.get('id');
+        const url = id ? `${PROJECT_ROUTES.edit}/${id}` : PROJECT_ROUTES.add;
+
+        // Clear previous errors
+        document.querySelectorAll('.error-msg').forEach(el => el.classList.add('hidden'));
+
+        try {
+            const res = await fetch(url, {
+                method: 'POST',
+                body: formData,
+                headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content, 'X-Requested-With': 'XMLHttpRequest' }
+            });
+
+            const data = await res.json();
+
+            if (res.status === 422) { // Laravel Validation Errors
+                Object.keys(data.errors).forEach(key => {
+                    const errorEl = document.getElementById(`error-${key}`);
+                    if (errorEl) {
+                        errorEl.innerText = data.errors[key][0];
+                        errorEl.classList.remove('hidden');
+                    }
+                });
+            } else if (data.status) {
+                cancelProjectForm();
+                fetchProjects();
+            } else {
+                // Handle the custom JSON errors (like "Project title already exists")
+                const errorEl = document.getElementById(`error-title`);
+                errorEl.innerText = data.message;
+                errorEl.classList.remove('hidden');
+            }
+        } catch (error) { console.error("Error saving", error); }
+    });
+
+    async function deleteProject(id) {
+        
+        try {
+            await fetch(PROJECT_ROUTES.delete, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content },
+                body: JSON.stringify({ id })
+            });
+            fetchProjects();
+        } catch (e) { console.error("Delete failed"); }
+    }
+</script>
+
+ <div id="section-skills" class="dashboard-section space-y-6 hidden">
+  <div>
+    <h1 class="text-2xl font-bold text-gray-900">Manage Skills</h1>
+    <p class="text-gray-500 text-sm mt-1">
+      Highlight your expertise. Candidates with 5+ skills are 3x more
+      likely to be noticed by recruiters.
+    </p>
+  </div>
+
+  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+    <form id="skill-form">
+      @csrf
+      <div class="relative flex items-center">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+        </div>
+
+        <input
+          type="text"
+          id="skill-input"
+          name="skill"
+          placeholder="Add Skill like Laravel, PHP, or Tailwind CSS"
+          class="w-full border border-gray-300 rounded-xl pl-11 pr-28 py-4 focus:ring-2 focus:ring-brand-purple focus:border-brand-purple outline-none transition text-gray-700 bg-gray-50 focus:bg-white shadow-inner text-sm md:text-base"
+        />
+        <div class="absolute inset-y-0 right-1.5 flex items-center">
+          <button
+            type="submit"
+            class="px-5 py-2.5 bg-brand-purple text-white text-sm font-bold rounded-lg hover:bg-brand-dark transition shadow-md cursor-pointer"
+          >
+            Add Skill
+          </button>
+        </div>
+      </div>
+      <p id="skill-error-msg" class="text-red-500 text-xs mt-2 min-h-[1.25rem]"></p>
+    </form>
+  </div>
+
+  <div class="mb-4 flex justify-between items-center border-b border-gray-100 pb-3">
+    <h3 class="text-gray-800 flex items-center gap-2">
+      Your Skills
+      <span
+        id="skill-count-badge"
+        class="bg-purple-100 text-brand-purple text-xs px-2.5 py-0.5 rounded-full"
+      >0</span>
+    </h3>
+    <button
+      onclick="deleteAllSkills()"
+      class="text-sm text-red-500 hover:text-red-700 font-medium transition cursor-pointer"
+    >
+      Clear All
+    </button>
+  </div>
+
+  <div id="skills-list-container" class="flex flex-wrap gap-3"></div>
+</div>
     </div>
   </div>
 </section>
 
 <script>
   function switchTab(sectionId, clickedButton) {
-    // 1. Hide all sections
     const sections = document.querySelectorAll(".dashboard-section");
     sections.forEach((section) => {
       section.classList.add("hidden");
       section.classList.remove("block");
     });
-
-    // 2. Show the target section
     const targetSection = document.getElementById(sectionId);
     targetSection.classList.remove("hidden");
     targetSection.classList.add("block");
-
-    // 3. Remove 'active' styling from all buttons
     const navButtons = document.querySelectorAll(".nav-btn");
     navButtons.forEach((btn) => {
       btn.classList.remove("bg-purple-50", "text-brand-purple");
       btn.classList.add("text-gray-600");
     });
-
-    // 4. Add 'active' styling to the clicked button
     clickedButton.classList.remove("text-gray-600");
     clickedButton.classList.add("bg-purple-50", "text-brand-purple");
   }
+
+  const skillForm = document.getElementById('skill-form');
+  const skillInput = document.getElementById('skill-input');
+  const skillError = document.getElementById('skill-error-msg');
+  const skillsContainer = document.getElementById('skills-list-container');
+  const skillCountBadge = document.getElementById('skill-count-badge');
+
+async function fetchSkills() {
+  try {
+    const response = await fetch("{{ route('show.skills') }}", {
+      headers: { 
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest' 
+      }
+    });
+
+    const data = await response.json();
+    console.log("Server Response:", data); 
+
+    if (data.skills) {
+      renderSkillsList(data.skills);
+    }
+  } catch (err) {
+    console.error("Fetch Error:", err);
+  }
+}
+
+  function renderSkillsList(skills) {
+    skillCountBadge.innerText = skills.length;
+    if (skills.length === 0) {
+      skillsContainer.innerHTML = '<p class="text-gray-400 text-sm italic">No skills added yet.</p>';
+      return;
+    }
+    skillsContainer.innerHTML = skills.map(skill => `
+      <div id="skill-item-${skill.id}" class="group flex items-center gap-2 bg-white border border-gray-200 hover:border-brand-purple hover:shadow-sm pl-4 pr-1.5 py-1.5 rounded-full transition duration-200">
+        <span class="text-sm font-medium text-gray-700 group-hover:text-brand-purple transition">${skill.skill_name}</span>
+        <button type="button" onclick="deleteSingleSkill(${skill.id})" class="w-7 h-7 flex items-center justify-center rounded-full text-gray-400 hover:bg-red-50 hover:text-red-500 transition duration-200 cursor-pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    `).join('');
+  }
+
+  skillForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    skillError.innerText = "";
+    const token = document.querySelector('input[name="_token"]')?.value;
+
+    try {
+      const response = await fetch("{{ route('add.skill') }}", {
+        method: 'POST',
+        headers: {
+          'X-CSRF-TOKEN': token,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ skill: skillInput.value })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.status) {
+        skillInput.value = "";
+        fetchSkills();
+      } else {
+        if (data.errors) {
+          skillError.innerText = Object.values(data.errors)[0][0];
+        } else {
+          skillError.innerText = data.message || "Failed to add skill";
+        }
+      }
+    } catch (err) {
+      skillError.innerText = "Connection error. Please check your console.";
+      console.error(err);
+    }
+  });
+
+  async function deleteSingleSkill(id) {
+    const token = document.querySelector('input[name="_token"]')?.value;
+    try {
+      const response = await fetch("{{ route('delete.skill') }}", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': token,
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ _method: 'DELETE', id: id })
+      });
+      const data = await response.json();
+      if (data.status) fetchSkills();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function deleteAllSkills() {
+   
+    const token = document.querySelector('input[name="_token"]')?.value;
+    try {
+      await fetch("{{ route('delete.all') }}", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': token,
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ _method: 'DELETE' })
+      });
+      fetchSkills();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', fetchSkills);
 </script>
+
 <x-footer />

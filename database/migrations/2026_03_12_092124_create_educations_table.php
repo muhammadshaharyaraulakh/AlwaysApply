@@ -9,6 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    protected $table = 'educations';
     public function up(): void
     {
         Schema::create('educations', function (Blueprint $table) {$table->id();
@@ -16,7 +17,7 @@ return new class extends Migration
             $table->string('institute');
             $table->string('start');
             $table->string('completed');
-            $table->string('description');
+            $table->text('description')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();});
     }
