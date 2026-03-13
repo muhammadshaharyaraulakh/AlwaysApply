@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Skill;
 use App\Models\User;
 use App\Models\Education;
+use App\Models\Experience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -272,5 +273,68 @@ public function deleteEducation(Request $request)
 {
     Education::where('id', $request->id)->where('user_id', Auth::id())->delete();
     return response()->json(['status' => true]);
+}
+
+ // Don't forget to import the model
+
+// ... inside Profile class ...
+
+public function addExperience(Request $request)
+{
+    $request->validate([
+        'title'       => 'required|string|max:255',
+        'company'     => 'required|string|max:255',
+        'jobType'     => 'required|in:Full Time,Part Time,Internship,contract,Freelance',
+        'location'    => 'required|string|max:255',
+        'start_month' => 'required|string',
+        'start_year'  => 'required|string',
+        'end_month'   => 'nullable|string',
+        'end_year'    => 'nullable|string',
+        'description' => 'required|string',
+    ]);
+
+    $exp = Experience::create(array_merge($request->all(), ['user_id' => Auth::id()]));
+
+    return response()->json([
+        'status' => true, 
+        'message' => 'Experience added successfully', 
+        'experience' => $exp
+    ]);
+}
+
+public function showAllExperience()
+{
+    $experiences = Experience::where('user_id', Auth::id())->latest()->get();
+    return response()->json(['status' => true, 'experiences' => $experiences]);
+}
+
+public function showExperience($id)
+{
+    $exp = Experience::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+    return response()->json(['status' => true, 'experience' => $exp]);
+}
+
+public function editExperience(Request $request, $id)
+{
+    $request->validate([
+        'title'       => 'required|string|max:255',
+        'company'     => 'required|string|max:255',
+        'jobType'     => 'required|string',
+        'location'    => 'required|string|max:255',
+        'start_month' => 'required|string',
+        'start_year'  => 'required|string',
+        'description' => 'required|string',
+    ]);
+
+    $exp = Experience::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+    $exp->update($request->all());
+
+    return response()->json(['status' => true, 'message' => 'Experience updated successfully']);
+}
+
+public function deleteExperience(Request $request)
+{
+    Experience::where('id', $request->id)->where('user_id', Auth::id())->delete();
+    return response()->json(['status' => true, 'message' => 'Experience deleted']);
 }
 }

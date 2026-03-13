@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    protected $table = 'educations';
+    
     public function up(): void
     {
         Schema::create('educations', function (Blueprint $table) {$table->id();

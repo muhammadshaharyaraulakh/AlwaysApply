@@ -46,4 +46,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/education/edit/{id}', [Profile::class, 'editEducation'])->name('education.edit');
     Route::post('/education/delete', [Profile::class, 'deleteEducation'])->name('education.delete');
 });
+Route::prefix('experience')->group(function () {
+    Route::post('/add', [Profile::class, 'addExperience']);
+    Route::get('/all', [Profile::class, 'showAllExperience']);
+    Route::get('/show/{id}', [Profile::class, 'showExperience']);
+    Route::post('/edit/{id}', [Profile::class, 'editExperience']);
+    Route::post('/delete', [Profile::class, 'deleteExperience']);
+});
 require __DIR__.'/auth.php';

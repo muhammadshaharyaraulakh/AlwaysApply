@@ -1,4 +1,5 @@
 <x-navigationbar />
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <section class="bg-gray-50 min-h-screen">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="flex flex-col lg:flex-row gap-8">
@@ -707,303 +708,283 @@ Passionate backend developer with a strong focus on PHP and Laravel. I enjoy bui
           </div>
         </div>
 
-        <div id="section-experience" class="dashboard-section space-y-6 hidden">
-          <div class="flex justify-between items-center mb-6">
-            <div>
-              <h1 class="text-2xl font-bold text-gray-900">Experience</h1>
-              <p class="text-gray-500 text-sm mt-1">
-                Showcase your career history and internships.
-              </p>
-            </div>
-            <button
-              onclick="toggleExperienceForm()"
-              class="px-5 py-2.5 bg-brand-purple text-white text-sm font-bold rounded-lg shadow-md hover:bg-brand-dark transition cursor-pointer flex items-center gap-2"
-            >
-              <i class="fa-solid fa-plus"></i> Add Experience
-            </button>
-          </div>
+<div id="section-experience" class="dashboard-section space-y-6 hidden">
+    <div class="flex justify-between items-center mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">Experience</h1>
+            <p class="text-gray-500 text-sm mt-1">Showcase your career history and internships.</p>
+        </div>
+        <button onclick="toggleExperienceForm()" class="px-5 py-2.5 bg-brand-purple text-white text-sm font-bold rounded-lg shadow-md hover:bg-brand-dark transition cursor-pointer flex items-center gap-2">
+            <i class="fa-solid fa-plus"></i> Add Experience
+        </button>
+    </div>
 
-          <div
-            id="experience-list"
-            class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 block space-y-8"
-          >
-            <div class="flex flex-col sm:flex-row gap-4 group">
-              <div
-                class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-brand-purple shrink-0 mt-1 transition group-hover:bg-brand-purple group-hover:text-white"
-              >
-                <i class="fa-solid fa-briefcase text-xl"></i>
-              </div>
-
-              <div class="flex-1">
-                <h3 class="font-bold text-gray-900 text-lg">
-                  PHP Backend Developer Intern
-                </h3>
-                <p class="text-sm font-medium text-gray-700 mb-1">
-                  Tech Solutions Inc.
-                  <span class="text-gray-400 font-normal ml-2"
-                    >• Islamabad</span
-                  >
-                </p>
-                <p class="text-xs text-gray-500 mb-3">
-                  Jan 2026 - Present
-                  <span
-                    class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wide ml-2"
-                    >Current</span
-                  >
-                </p>
-                <p class="text-sm text-gray-600">
-                  Developing and testing RESTful APIs using Laravel. Assisting
-                  the senior team in database migration and optimizing backend
-                  logic for an upcoming SaaS product.
-                </p>
-
-                <div class="flex gap-3 mt-4">
-                  <button
-                    class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-red-500 hover:text-red-500 transition cursor-pointer"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onclick="toggleExperienceForm()"
-                    class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-brand-purple hover:text-brand-purple transition cursor-pointer"
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div class="border-t border-gray-100"></div>
-
-            <div class="flex flex-col sm:flex-row gap-4 group">
-              <div
-                class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-brand-purple shrink-0 mt-1 transition group-hover:bg-brand-purple group-hover:text-white"
-              >
-                <i class="fa-solid fa-briefcase text-xl"></i>
-              </div>
-
-              <div class="flex-1">
-                <h3 class="font-bold text-gray-900 text-lg">
-                  Freelance Web Developer
-                </h3>
-                <p class="text-sm font-medium text-gray-700 mb-1">
-                  Self-Employed
-                  <span class="text-gray-400 font-normal ml-2">• Remote</span>
-                </p>
-                <p class="text-xs text-gray-500 mb-3">
-                  Jun 2024 - Dec 2025
-                  <span class="text-gray-400 ml-1">(1 yr 7 mos)</span>
-                </p>
-                <p class="text-sm text-gray-600">
-                  Built responsive websites for local businesses using HTML,
-                  Tailwind CSS, and core PHP. Managed client requirements and
-                  deployed projects on shared hosting.
-                </p>
-
-                <div class="flex gap-3 mt-4">
-                  <button
-                    class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-red-500 hover:text-red-500 transition cursor-pointer"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onclick="toggleExperienceForm()"
-                    class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-brand-purple hover:text-brand-purple transition cursor-pointer"
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            id="experience-form-container"
-            class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hidden"
-          >
-            <h2
-              class="text-xl font-bold text-gray-900 mb-5 border-b border-gray-100 pb-3"
-            >
-              Job Details
-            </h2>
-
-            <form class="space-y-5">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Job Title *</label
-                  >
-                  <input
-                    type="text"
-                    placeholder="e.g. Backend Developer"
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  />
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Company Name *</label
-                  >
-                  <input
-                    type="text"
-                    placeholder="e.g. Tech Solutions Inc."
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  />
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Employment Type *</label
-                  >
-                  <select
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  >
-                    <option value="" disabled selected>Select Type</option>
-                    <option>Full-time</option>
-                    <option>Part-time</option>
-                    <option>Internship</option>
-                    <option>Freelance</option>
-                    <option>Contract</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Location</label
-                  >
-                  <input
-                    type="text"
-                    placeholder="e.g. Islamabad, Pakistan"
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                  />
-                </div>
-              </div>
-
-              <div
-                class="grid grid-cols-1 md:grid-cols-2 gap-5 border-t border-gray-100 pt-5"
-              >
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >Start Date *</label
-                  >
-                  <div class="flex gap-2">
-                    <select
-                      class="w-1/2 border border-gray-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                    >
-                      <option>Month</option>
-                      <option>Jan</option>
-                      <option>Feb</option>
-                      <option>Mar</option>
-                    </select>
-                    <select
-                      class="w-1/2 border border-gray-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                    >
-                      <option>Year</option>
-                      <option>2026</option>
-                      <option>2025</option>
-                      <option>2024</option>
-                    </select>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 mb-1"
-                    >End Date *</label
-                  >
-                  <div class="flex gap-2 mb-2">
-                    <select
-                      class="w-1/2 border border-gray-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                    >
-                      <option>Month</option>
-                      <option>Jan</option>
-                      <option>Feb</option>
-                      <option>Mar</option>
-                    </select>
-                    <select
-                      class="w-1/2 border border-gray-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition"
-                    >
-                      <option>Year</option>
-                      <option>2026</option>
-                      <option>2025</option>
-                      <option>2024</option>
-                    </select>
-                  </div>
-                  <label
-                    class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer"
-                  >
-                    <input
-                      type="checkbox"
-                      class="rounded text-brand-purple focus:ring-brand-purple w-4 h-4 cursor-pointer"
-                      checked
-                    />
-                    I currently work here
-                  </label>
-                </div>
-              </div>
-
-              <div class="pt-2">
-                <label class="block text-sm font-semibold text-gray-700 mb-1"
-                  >Description</label
-                >
-                <textarea
-                  rows="4"
-                  placeholder="Describe your responsibilities and achievements..."
-                  class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition resize-none"
-                ></textarea>
-              </div>
-
-              <div
-                class="pt-4 flex flex-col sm:flex-row gap-3 justify-end border-t border-gray-100 mt-6"
-              >
-                <button
-                  type="button"
-                  onclick="cancelExperienceForm()"
-                  class="px-6 py-2.5 border border-gray-300 text-gray-700 font-bold rounded-lg hover:border-gray-400 transition cursor-pointer order-2 sm:order-1"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  class="px-6 py-2.5 bg-brand-purple text-white font-bold rounded-lg hover:bg-brand-dark transition shadow-md cursor-pointer order-1 sm:order-2"
-                >
-                  Save Experience
-                </button>
-              </div>
-            </form>
-          </div>
+    <div id="experience-list" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 space-y-8">
         </div>
 
-        <script>
-          function toggleExperienceForm() {
-            document.getElementById("experience-list").classList.add("hidden");
-            document
-              .getElementById("experience-list")
-              .classList.remove("block");
+    <div id="experience-form-container" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hidden">
+        <h2 id="exp-form-title" class="text-xl font-bold text-gray-900 mb-5 border-b border-gray-100 pb-3">Add Experience</h2>
 
-            document
-              .getElementById("experience-form-container")
-              .classList.remove("hidden");
-            document
-              .getElementById("experience-form-container")
-              .classList.add("block");
-          }
+        <form id="experience-form" class="space-y-5">
+            <input type="hidden" id="exp_id"> <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Job Title *</label>
+                    <input type="text" id="exp_title" name="title" placeholder="e.g. Backend Developer" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50">
+                    <span class="text-red-500 text-xs mt-1 err-msg" id="err_title"></span>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Company Name *</label>
+                    <input type="text" id="exp_company" name="company" placeholder="e.g. Tech Solutions Inc." class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50">
+                    <span class="text-red-500 text-xs mt-1 err-msg" id="err_company"></span>
+                </div>
+            </div>
 
-          function cancelExperienceForm() {
-            document
-              .getElementById("experience-form-container")
-              .classList.add("hidden");
-            document
-              .getElementById("experience-form-container")
-              .classList.remove("block");
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Employment Type *</label>
+                    <select id="exp_jobType" name="jobType" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50">
+                        <option value="" disabled selected>Select Type</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                        <option value="Internship">Internship</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="contract">Contract</option>
+                    </select>
+                    <span class="text-red-500 text-xs mt-1 err-msg" id="err_jobType"></span>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Location</label>
+                    <input type="text" id="exp_location" name="location" placeholder="e.g. Islamabad, Pakistan" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50">
+                    <span class="text-red-500 text-xs mt-1 err-msg" id="err_location"></span>
+                </div>
+            </div>
 
-            document
-              .getElementById("experience-list")
-              .classList.remove("hidden");
-            document.getElementById("experience-list").classList.add("block");
-          }
-        </script>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 border-t border-gray-100 pt-5">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Start Date *</label>
+                    <div class="flex gap-2">
+                        <select id="exp_start_month" name="start_month" class="w-1/2 border border-gray-300 rounded-lg px-3 py-2.5 bg-gray-50">
+                            <option value="">Month</option>
+                            <option>Jan</option><option>Feb</option><option>Mar</option><option>Apr</option>
+                            <option>May</option><option>Jun</option><option>Jul</option><option>Aug</option>
+                            <option>Sep</option><option>Oct</option><option>Nov</option><option>Dec</option>
+                        </select>
+                        <select id="exp_start_year" name="start_year" class="w-1/2 border border-gray-300 rounded-lg px-3 py-2.5 bg-gray-50">
+                            <option value="">Year</option>
+                            <option>2026</option><option>2025</option><option>2024</option><option>2023</option>
+                        </select>
+                    </div>
+                    <span class="text-red-500 text-xs mt-1 err-msg" id="err_start_month"></span>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">End Date</label>
+                    <div class="flex gap-2 mb-2">
+                        <select id="exp_end_month" name="end_month" class="w-1/2 border border-gray-300 rounded-lg px-3 py-2.5 bg-gray-50 disabled:opacity-50">
+                            <option value="">Month</option>
+                            <option>Jan</option><option>Feb</option><option>Mar</option>
+                            </select>
+                        <select id="exp_end_year" name="end_year" class="w-1/2 border border-gray-300 rounded-lg px-3 py-2.5 bg-gray-50 disabled:opacity-50">
+                            <option value="">Year</option>
+                            <option>2026</option><option>2025</option><option>2024</option>
+                        </select>
+                    </div>
+                    <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+                        <input type="checkbox" id="exp_current" onchange="toggleEndDate(this)" class="rounded text-brand-purple w-4 h-4">
+                        I currently work here
+                    </label>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+                <textarea id="exp_description" name="description" rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-3 bg-gray-50 resize-none"></textarea>
+                <span class="text-red-500 text-xs mt-1 err-msg" id="err_description"></span>
+            </div>
+
+            <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-end border-t border-gray-100">
+                <button type="button" onclick="cancelExperienceForm()" class="px-6 py-2.5 border border-gray-300 text-gray-700 font-bold rounded-lg hover:border-gray-400 transition cursor-pointer">Cancel</button>
+                <button type="submit" class="px-6 py-2.5 bg-brand-purple text-white font-bold rounded-lg hover:bg-brand-dark transition shadow-md cursor-pointer">Save Experience</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    loadExperiences();
+
+    const expForm = document.getElementById('experience-form');
+    expForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        saveExperience();
+    });
+});
+
+// Toggle end date fields based on "I currently work here"
+function toggleEndDate(checkbox) {
+    const endMonth = document.getElementById('exp_end_month');
+    const endYear = document.getElementById('exp_end_year');
+    if (checkbox.checked) {
+        endMonth.disabled = true;
+        endYear.disabled = true;
+        endMonth.value = "";
+        endYear.value = "";
+    } else {
+        endMonth.disabled = false;
+        endYear.disabled = false;
+    }
+}
+
+// Show form for new entry
+function toggleExperienceForm() {
+    resetExpForm();
+    document.getElementById("exp-form-title").innerText = "Add Experience";
+    document.getElementById("experience-list").classList.add("hidden");
+    document.getElementById("experience-form-container").classList.remove("hidden");
+}
+
+function cancelExperienceForm() {
+    document.getElementById("experience-form-container").classList.add("hidden");
+    document.getElementById("experience-list").classList.remove("hidden");
+    resetExpForm();
+}
+
+function resetExpForm() {
+    document.getElementById('experience-form').reset();
+    document.getElementById('exp_id').value = "";
+    document.querySelectorAll('.err-msg').forEach(el => el.innerText = "");
+    toggleEndDate(document.getElementById('exp_current'));
+}
+
+// ---------------- FETCH OPERATIONS ----------------
+
+async function loadExperiences() {
+    try {
+        const res = await fetch('/experience/all');
+        const data = await res.json();
+        const container = document.getElementById('experience-list');
+        
+        if (data.experiences.length === 0) {
+            container.innerHTML = `<p class="text-center text-gray-400">No experience added yet.</p>`;
+            return;
+        }
+
+        container.innerHTML = data.experiences.map(exp => `
+            <div class="flex flex-col sm:flex-row gap-4 group">
+                <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-brand-purple shrink-0 mt-1 transition group-hover:bg-brand-purple group-hover:text-white">
+                    <i class="fa-solid fa-briefcase text-xl"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-bold text-gray-900 text-lg">${exp.title}</h3>
+                    <p class="text-sm font-medium text-gray-700 mb-1">${exp.company} <span class="text-gray-400 font-normal ml-2">• ${exp.location}</span></p>
+                    <p class="text-xs text-gray-500 mb-3">
+                        ${exp.start_month} ${exp.start_year} - ${exp.end_year ? exp.end_month + ' ' + exp.end_year : 'Present'}
+                        ${!exp.end_year ? '<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wide ml-2">Current</span>' : ''}
+                    </p>
+                    <p class="text-sm text-gray-600">${exp.description}</p>
+                    <div class="flex gap-3 mt-4">
+                        <button onclick="deleteExperience(${exp.id})" class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-red-500 hover:text-red-500 transition cursor-pointer">Delete</button>
+                        <button onclick="editExperience(${exp.id})" class="px-4 py-1.5 border border-gray-300 rounded text-xs font-medium hover:border-brand-purple hover:text-brand-purple transition cursor-pointer">Edit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-100 last:hidden"></div>
+        `).join('');
+    } catch (err) { console.error("Load failed", err); }
+}
+
+async function saveExperience() {
+    const id = document.getElementById('exp_id').value;
+    const url = id ? `/experience/edit/${id}` : '/experience/add';
+    
+    // Clear previous errors
+    document.querySelectorAll('.err-msg').forEach(el => el.innerText = "");
+
+    const payload = {
+        title: document.getElementById('exp_title').value,
+        company: document.getElementById('exp_company').value,
+        jobType: document.getElementById('exp_jobType').value,
+        location: document.getElementById('exp_location').value,
+        start_month: document.getElementById('exp_start_month').value,
+        start_year: document.getElementById('exp_start_year').value,
+        end_month: document.getElementById('exp_end_month').value,
+        end_year: document.getElementById('exp_end_year').value,
+        description: document.getElementById('exp_description').value,
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (response.status === 422) { // Validation Error
+            Object.keys(result.errors).forEach(key => {
+                const errSpan = document.getElementById(`err_${key}`);
+                if (errSpan) errSpan.innerText = result.errors[key][0];
+            });
+        } else if (result.status) {
+            cancelExperienceForm();
+            loadExperiences();
+        }
+    } catch (err) { console.error("Save failed", err); }
+}
+
+async function editExperience(id) {
+    try {
+        const res = await fetch(`/experience/show/${id}`);
+        const data = await res.json();
+        const exp = data.experience;
+
+        document.getElementById('exp_id').value = exp.id;
+        document.getElementById('exp_title').value = exp.title;
+        document.getElementById('exp_company').value = exp.company;
+        document.getElementById('exp_jobType').value = exp.jobType;
+        document.getElementById('exp_location').value = exp.location;
+        document.getElementById('exp_start_month').value = exp.start_month;
+        document.getElementById('exp_start_year').value = exp.start_year;
+        document.getElementById('exp_description').value = exp.description;
+        
+        const isCurrent = !exp.end_year;
+        document.getElementById('exp_current').checked = isCurrent;
+        if (!isCurrent) {
+            document.getElementById('exp_end_month').value = exp.end_month;
+            document.getElementById('exp_end_year').value = exp.end_year;
+        }
+        toggleEndDate(document.getElementById('exp_current'));
+
+        document.getElementById("exp-form-title").innerText = "Edit Experience";
+        document.getElementById("experience-list").classList.add("hidden");
+        document.getElementById("experience-form-container").classList.remove("hidden");
+    } catch (err) { console.error("Edit fetch failed", err); }
+}
+
+async function deleteExperience(id) {
+    if (!confirm('Are you sure you want to delete this experience?')) return;
+    
+    try {
+        const res = await fetch('/experience/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({ id: id })
+        });
+        const result = await res.json();
+        if (result.status) loadExperiences();
+    } catch (err) { console.error("Delete failed", err); }
+}
+</script>
 
 
-<meta name="csrf-token" content="{{ csrf_token() }}">
 <div id="section-education" class="dashboard-section space-y-6">
   <div class="flex justify-between items-center mb-6">
     <div>
