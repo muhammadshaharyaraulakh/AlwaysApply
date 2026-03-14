@@ -53,4 +53,5 @@ Route::prefix('experience')->group(function () {
     Route::post('/edit/{id}', [Profile::class, 'editExperience']);
     Route::post('/delete', [Profile::class, 'deleteExperience']);
 });
+Route::post('/coverPhoto',[Profile::class, 'addCover'])->name('addcover');
 require __DIR__.'/auth.php';

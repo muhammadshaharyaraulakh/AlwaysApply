@@ -359,7 +359,7 @@
   </div>
 
   <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-    <form id="form-cover-photo" action="" method="POST" enctype="multipart/form-data">
+    <form id="form-cover-photo" action="route{{addcove}}" method="POST" enctype="multipart/form-data">
       <div class="mb-2 border-gray-100">
         <div class="flex justify-between items-end mb-2">
           <h3 class="font-bold text-gray-900 text-sm">Cover Photo</h3>
@@ -370,7 +370,7 @@
             <i class="fa-solid fa-camera text-white text-2xl mb-1"></i>
             <span class="text-white text-sm font-medium">Change Cover Photo</span>
           </div>
-          <input type="file" name="cover_photo" onchange="this.form.submit()" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" accept="image/jpeg, image/png" />
+          <input type="file" name="coverImage" onchange="this.form.submit()" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" accept="image/jpeg, image/png" />
         </div>
       </div>
     </form>
