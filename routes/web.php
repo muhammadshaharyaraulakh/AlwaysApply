@@ -53,5 +53,13 @@ Route::prefix('experience')->group(function () {
     Route::post('/edit/{id}', [Profile::class, 'editExperience']);
     Route::post('/delete', [Profile::class, 'deleteExperience']);
 });
-Route::post('/coverPhoto',[Profile::class, 'addCover'])->name('addcover');
+use App\Http\Controllers\ProfileController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/profile/cover', [Profile::class, 'updateCover']);
+    Route::post('/profile/avatar', [Profile::class, 'updateAvatar']);
+    Route::post('/profile/avatar/remove', [Profile::class, 'removeAvatar']);
+    Route::post('/profile/info', [Profile::class, 'updateInfo']);
+    Route::post('/profile/resume', [Profile::class, 'updateResume']);
+});
 require __DIR__.'/auth.php';

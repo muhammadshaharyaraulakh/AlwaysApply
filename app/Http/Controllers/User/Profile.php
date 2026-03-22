@@ -7,8 +7,11 @@ use App\Models\Skill;
 use App\Models\User;
 use App\Models\Education;
 use App\Models\Experience;
-use Illuminate\Http\Request;
+use App\Models\Profile as ProfileModel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
+
 
 class Profile extends Controller
 {
@@ -344,7 +347,7 @@ public function addCover(Request $request) {
     ]);
 
     $user_id = Auth::id();
-    $profile = Profile::where('user_id', $user_id)->first();
+    $profile = ProfileModel::where('user_id', $user_id)->first();
 
     if ($request->hasFile('coverImage')) {
         $file = $request->file('coverImage');
@@ -367,7 +370,7 @@ public function addCover(Request $request) {
             ]);
         } else {
             // Create new record if user doesn't have a profile yet
-            Profile::create([
+            ProfileModel::create([
                 'user_id' => $user_id,
                 'coverImage' => $filename,
             ]);
@@ -380,4 +383,94 @@ public function addCover(Request $request) {
         ]);
     }
 }
+
+    private function getProfile()
+    {
+        return ProfileModel::firstOrCreate(
+            ['user_id' => Auth::id()],
+            ['email' => Auth::user()->email, 'name' => Auth::user()->name]
+        );
+    }
+
+    // Cover Photo
+    public function updateCover(Request $request)
+    {
+        $request->validate([
+            'coverImage' => 'required|image|mimes:jpeg,png|max:2048'
+        ]);
+
+        $profile = $this->getProfile();
+
+        if ($request->hasFile('coverImage')) {
+            $path = $request->file('coverImage')->store('covers', 'public');
+            $profile->coverImage = $path;
+            $profile->save();
+        }
+
+        return response()->json(['success' => true, 'message' => 'Cover updated']);
+    }
+
+    // Avatar
+    public function updateAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png|max:2048'
+        ]);
+
+        $profile = $this->getProfile();
+
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $profile->profileImage = $path;
+            $profile->save();
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+    public function removeAvatar()
+    {
+        $profile = $this->getProfile();
+        $profile->profileImage = null;
+        $profile->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    // General Info
+    public function updateInfo(Request $request)
+    {
+        $profile = $this->getProfile();
+
+        $profile->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'ProfessionalHeadline' => $request->headline,
+            'status' => $request->status,
+            'location' => $request->location,
+            'linkedin' => $request->linkedin,
+            'github' => $request->github,
+        ]);
+
+        return response()->json(['success' => true]);
+    }
+
+    // Resume
+    public function updateResume(Request $request)
+    {
+        $request->validate([
+            'resume' => 'required|mimes:pdf|max:2048'
+        ]);
+
+        $profile = $this->getProfile();
+
+        if ($request->hasFile('resume')) {
+            $path = $request->file('resume')->store('resumes', 'public');
+            $profile->resume = $path;
+            $profile->save();
+        }
+
+        return response()->json(['success' => true]);
+    }
+
 }

@@ -358,127 +358,178 @@
     </p>
   </div>
 
-  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-    <form id="form-cover-photo" action="route{{addcove}}" method="POST" enctype="multipart/form-data">
-      <div class="mb-2 border-gray-100">
-        <div class="flex justify-between items-end mb-2">
-          <h3 class="font-bold text-gray-900 text-sm">Cover Photo</h3>
-          <p class="text-xs text-gray-500">Recommended: 1200 x 300px</p>
-        </div>
-        <div class="relative group cursor-pointer w-full h-32 md:h-40 rounded-xl overflow-hidden bg-gradient-to-r from-brand-purple to-purple-400 border border-gray-200">
-          <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200">
-            <i class="fa-solid fa-camera text-white text-2xl mb-1"></i>
-            <span class="text-white text-sm font-medium">Change Cover Photo</span>
-          </div>
-          <input type="file" name="coverImage" onchange="this.form.submit()" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" accept="image/jpeg, image/png" />
-        </div>
+ <meta name="csrf-token" content="{{ csrf_token() }}">
+
+<div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+  <form id="form-cover-photo" action="/profile/cover" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="mb-2 border-gray-100">
+      <div class="flex justify-between items-end mb-2">
+        <h3 class="font-bold text-gray-900 text-sm">Cover Photo</h3>
+        <p class="text-xs text-gray-500">Recommended: 1200 x 300px</p>
       </div>
-    </form>
-  </div>
-
-  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-    <div class="flex items-center gap-5">
-      <form id="form-avatar" action="/profile/avatar" method="POST" enctype="multipart/form-data">
-        <div class="relative group cursor-pointer w-20 h-20 rounded-full overflow-hidden border-2 border-gray-200 shrink-0">
-          <img src="https://ui-avatars.com/api/?name=Anil&background=f3e8ff&color=6300B3&size=150" alt="Avatar" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-            <i class="fa-solid fa-camera text-white"></i>
-          </div>
-          <input type="file" name="avatar" onchange="this.form.submit()" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" accept="image/jpeg, image/png" />
+      <div class="relative group cursor-pointer w-full h-32 md:h-40 rounded-xl overflow-hidden bg-gradient-to-r from-brand-purple to-purple-400 border border-gray-200">
+        <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200">
+          <i class="fa-solid fa-camera text-white text-2xl mb-1"></i>
+          <span class="text-white text-sm font-medium">Change Cover Photo</span>
         </div>
-      </form>
-
-      <div>
-        <h3 class="font-bold text-gray-900 text-sm">Profile Picture</h3>
-        <p class="text-xs text-gray-500 mb-2">PNG, JPG up to 2MB</p>
-        <form action="/profile/avatar/remove" method="POST">
-          <button type="submit" class="text-xs font-semibold text-red-500 hover:text-red-700 transition cursor-pointer">
-            Remove photo
-          </button>
-        </form>
+        <input type="file" name="coverImage" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" accept="image/jpeg, image/png" />
       </div>
     </div>
-  </div>
+  </form>
+</div>
 
-  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-    <form id="form-general-info" action="/profile/info" method="POST" class="space-y-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
-        <div>
-          <label class="block text-sm font-semibold text-gray-700 mb-1">Full Name *</label>
-          <input type="text" name="name" value="Anil" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+<div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+  <div class="flex items-center gap-5">
+    <form id="form-avatar" action="/profile/avatar" method="POST" enctype="multipart/form-data">
+      @csrf
+      <div class="relative group cursor-pointer w-20 h-20 rounded-full overflow-hidden border-2 border-gray-200 shrink-0">
+        <img src="https://ui-avatars.com/api/?name=Anil&background=f3e8ff&color=6300B3&size=150" alt="Avatar" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <i class="fa-solid fa-camera text-white"></i>
         </div>
-        <div>
-          <label class="block text-sm font-semibold text-gray-700 mb-1">Professional Headline *</label>
-          <input type="text" name="headline" value="Backend PHP & Laravel Developer" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
-        </div>
-        <div>
-          <label class="block text-sm font-semibold text-gray-700 mb-1">Email Address *</label>
-          <input type="email" value="anil@example.com" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" readonly />
-        </div>
-        <div>
-          <label class="block text-sm font-semibold text-gray-700 mb-1">Phone Number</label>
-          <input type="tel" name="phone" value="+92 300 1234567" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
-        </div>
-        <div>
-          <label class="block text-sm font-semibold text-gray-700 mb-1">Availability Status</label>
-          <select name="status" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition">
-            <option>Actively Looking</option>
-            <option selected>Available for Internship</option>
-            <option>Not Looking</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-sm font-semibold text-gray-700 mb-1">Location</label>
-          <input type="text" name="location" value="Islamabad, Pakistan" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
-        </div>
+        <input type="file" name="avatar" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" accept="image/jpeg, image/png" />
+      </div>
+    </form>
+
+    <div>
+      <h3 class="font-bold text-gray-900 text-sm">Profile Picture</h3>
+      <p class="text-xs text-gray-500 mb-2">PNG, JPG up to 2MB</p>
+      <form id="form-remove-avatar" action="/profile/avatar/remove" method="POST">
+        @csrf
+        <button type="submit" class="text-xs font-semibold text-red-500 hover:text-red-700 transition cursor-pointer">
+          Remove photo
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+  <form id="form-general-info" action="/profile/info" method="POST" class="space-y-6">
+    @csrf
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Full Name *</label>
+        <input type="text" name="name" value="Anil" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
       </div>
 
       <div>
-        <label class="block text-sm font-semibold text-gray-700 mb-1">About Me (Bio)</label>
-        <textarea name="bio" rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition resize-none">Passionate backend developer...</textarea>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Professional Headline *</label>
+        <input type="text" name="headline" value="Backend PHP & Laravel Developer" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
       </div>
 
-      <div class="border-t border-gray-100 pt-6 mt-6">
-        <h3 class="font-bold text-gray-900 text-sm mb-4">Digital Footprint</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div class="relative">
-            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-              <i class="fa-brands fa-linkedin text-[#0A66C2] text-lg"></i>
-            </div>
-            <input type="url" name="linkedin" value="linkedin.com/in/anil" class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Email Address *</label>
+        <input type="email" value="anil@example.com" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 bg-gray-50" readonly />
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Phone Number</label>
+        <input type="tel" name="phone" value="+92 300 1234567" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Availability Status</label>
+        <select name="status" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition">
+          <option>Actively Looking</option>
+          <option selected>Available for Internship</option>
+          <option>Not Looking</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Location</label>
+        <input type="text" name="location" value="Islamabad, Pakistan" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold text-gray-700 mb-1">About Me (Bio)</label>
+      <textarea name="bio" rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition resize-none">Passionate backend developer...</textarea>
+    </div>
+
+    <div class="border-t border-gray-100 pt-6 mt-6">
+      <h3 class="font-bold text-gray-900 text-sm mb-4">Digital Footprint</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+            <i class="fa-brands fa-linkedin text-[#0A66C2] text-lg"></i>
           </div>
-          <div class="relative">
-            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-              <i class="fa-brands fa-github text-gray-800 text-lg"></i>
-            </div>
-            <input type="url" name="github" value="github.com/anil-dev" class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+          <input type="url" name="linkedin" value="linkedin.com/in/anil" class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
+        </div>
+
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+            <i class="fa-brands fa-github text-gray-800 text-lg"></i>
           </div>
+          <input type="url" name="github" value="github.com/anil-dev" class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-brand-purple focus:outline-none bg-gray-50 focus:bg-white transition" />
         </div>
       </div>
+    </div>
 
-      <div class="pt-4 flex justify-end">
-        <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-brand-purple text-white font-bold rounded-lg shadow-md hover:bg-brand-dark transition transform active:scale-[0.98]">
-          Save General Info
-        </button>
-      </div>
-    </form>
-  </div>
+    <div class="pt-4 flex justify-end">
+      <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-brand-purple text-white font-bold rounded-lg shadow-md hover:bg-brand-dark transition transform active:scale-[0.98]">
+        Save General Info
+      </button>
+    </div>
+  </form>
+</div>
 
-  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-    <form id="form-resume" action="/profile/resume" method="POST" enctype="multipart/form-data">
-      <label class="block text-sm font-semibold text-gray-700 mb-2">Update Resume (PDF only)</label>
-      <div class="relative group cursor-pointer">
-        <input type="file" name="resume" onchange="this.form.submit()" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" accept="application/pdf" />
-        <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center group-hover:border-brand-purple group-hover:bg-purple-50 transition duration-200">
-          <i class="fa-solid fa-file-pdf text-3xl text-gray-400 group-hover:text-brand-purple mb-2 transition"></i>
-          <p class="text-sm font-medium text-brand-purple">
-            Click to upload new resume <span class="text-gray-500 font-normal">or drag and drop</span>
-          </p>
-          <p class="text-xs text-gray-400 mt-1">Currently uploaded: anil_cv_2026.pdf</p>
-        </div>
+<div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+  <form id="form-resume" action="/profile/resume" method="POST" enctype="multipart/form-data">
+    @csrf
+    <label class="block text-sm font-semibold text-gray-700 mb-2">Update Resume (PDF only)</label>
+    <div class="relative group cursor-pointer">
+      <input type="file" name="resume" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" accept="application/pdf" />
+      <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center group-hover:border-brand-purple group-hover:bg-purple-50 transition duration-200">
+        <i class="fa-solid fa-file-pdf text-3xl text-gray-400 group-hover:text-brand-purple mb-2 transition"></i>
+        <p class="text-sm font-medium text-brand-purple">
+          Click to upload new resume <span class="text-gray-500 font-normal">or drag and drop</span>
+        </p>
+        <p class="text-xs text-gray-400 mt-1">Currently uploaded: anil_cv_2026.pdf</p>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>
+  <script>
+function sendForm(formId, url) {
+    let form = document.getElementById(formId);
+    let formData = new FormData(form);
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+        alert("Updated successfully!");
+    })
+    .catch(err => console.error(err));
+}
+
+// Bind events
+document.getElementById("form-cover-photo").addEventListener("change", function () {
+    sendForm("form-cover-photo", "/profile/cover");
+});
+
+document.getElementById("form-avatar").addEventListener("change", function () {
+    sendForm("form-avatar", "/profile/avatar");
+});
+
+document.getElementById("form-general-info").addEventListener("submit", function (e) {
+    e.preventDefault();
+    sendForm("form-general-info", "/profile/info");
+});
+
+document.getElementById("form-resume").addEventListener("change", function () {
+    sendForm("form-resume", "/profile/resume");
+});
+</script>
 </div>
         <div
           id="section-applications"
