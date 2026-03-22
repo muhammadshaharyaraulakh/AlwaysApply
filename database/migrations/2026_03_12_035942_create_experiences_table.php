@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('company');
-            $table->enum('jobType',['Full Time','Part Time','Internship','contract','Freelance']);
+            $table->enum('jobType', ['Full Time', 'Part Time', 'Internship', 'contract', 'Freelance']);
             $table->string('location');
             $table->string('start_month');
             $table->string('start_year');
-            $table->string('end_month');
-            $table->string('end_year');
+            $table->string('end_month')->nullable(); // <-- MUST BE NULLABLE
+            $table->string('end_year')->nullable();  // <-- MUST BE NULLABLE
             $table->string('description');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

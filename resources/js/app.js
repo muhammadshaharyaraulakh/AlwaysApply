@@ -1,5 +1,9 @@
 import './bootstrap';
 import './main.js';
+import './skills.js';
+import './projects.js';
+import './education.js';
+import   './experience.js'
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 AOS.init({
@@ -34,7 +38,7 @@ togglePasswordBtn.addEventListener("click", () => {
     togglePasswordBtn.textContent = type === "password" ? "Show" : "Hide";
 });
 
-   
+
 
 });
 

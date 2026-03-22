@@ -2,16 +2,14 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Education;
+use App\Models\Experience;
 use App\Models\Project;
 use App\Models\Skill;
 use App\Models\User;
-use App\Models\Education;
-use App\Models\Experience;
-use App\Models\Profile as ProfileModel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Request;
-
 
 class Profile extends Controller
 {
@@ -55,7 +53,7 @@ class Profile extends Controller
                 'skills' => $skills,
             ]);
         }
-        return view('userPages.dashboard', compact('skills'));
+        return view('userPages.dashboard');
     }
     public function deleteSkill(Request $request)
     {
@@ -222,171 +220,220 @@ class Profile extends Controller
             'message' => 'Project deleted successfully',
         ]);
     }
-public function addEducation(Request $request)
-{
-    $request->validate([
-        'name'        => 'required|string|max:255',
-        'institute'   => 'required|string|max:255',
-        'start'       => 'required|integer',
-        'completed'   => 'required|integer',
-        'description' => 'required|string',
-    ]);
+    public function addEducation(Request $request)
+    {
+        $request->validate([
+            'name'        => 'required|string|max:255',
+            'institute'   => 'required|string|max:255',
+            'start'       => 'required|integer',
+            'completed'   => 'required|integer',
+            'description' => 'required|string',
+        ]);
 
-    $edu = Education::create([
-        'name'        => $request->name,
-        'institute'   => $request->institute,
-        'start'       => $request->start,
-        'completed'   => $request->completed,
-        'description' => $request->description,
-        'user_id'      => Auth::id(),
-    ]);
+        $edu = Education::create([
+            'name'        => $request->name,
+            'institute'   => $request->institute,
+            'start'       => $request->start,
+            'completed'   => $request->completed,
+            'description' => $request->description,
+            'user_id'     => Auth::id(),
+        ]);
 
-    return response()->json(['status' => true, 'message' => 'Education added', 'education' => $edu]);
-}
+        return response()->json(['status' => true, 'message' => 'Education added', 'education' => $edu]);
+    }
 
-public function showAllEducation()
-{
-    $edu = Education::where('user_id', Auth::id())->orderBy('start', 'desc')->get();
-    return response()->json(['status' => true, 'education' => $edu]);
-}
+    public function showAllEducation()
+    {
+        $edu = Education::where('user_id', Auth::id())->orderBy('start', 'desc')->get();
+        return response()->json(['status' => true, 'education' => $edu]);
+    }
 
-public function showEducation($id)
-{
-    $edu = Education::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
-    return response()->json(['status' => true, 'education' => $edu]);
-}
+    public function showEducation($id)
+    {
+        $edu = Education::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        return response()->json(['status' => true, 'education' => $edu]);
+    }
 
-public function editEducation(Request $request, $id)
-{
-    $request->validate([
-        'name'        => 'required|string|max:255',
-        'institute'   => 'required|string|max:255',
-        'start'       => 'required|integer',
-        'completed'   => 'required|integer',
-        'description' => 'required|string',
-    ]);
+    public function editEducation(Request $request, $id)
+    {
+        $request->validate([
+            'name'        => 'required|string|max:255',
+            'institute'   => 'required|string|max:255',
+            'start'       => 'required|integer',
+            'completed'   => 'required|integer',
+            'description' => 'required|string',
+        ]);
 
-    $edu = Education::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
-    $edu->update($request->all());
+        $edu = Education::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $edu->update($request->all());
 
-    return response()->json(['status' => true, 'message' => 'Education updated']);
-}
+        return response()->json(['status' => true, 'message' => 'Education updated']);
+    }
 
-public function deleteEducation(Request $request)
-{
-    Education::where('id', $request->id)->where('user_id', Auth::id())->delete();
-    return response()->json(['status' => true]);
-}
+    public function deleteEducation(Request $request)
+    {
+        Education::where('id', $request->id)->where('user_id', Auth::id())->delete();
+        return response()->json(['status' => true]);
+    }
 
- // Don't forget to import the model
+    // Don't forget to import the model
 
 // ... inside Profile class ...
 
-public function addExperience(Request $request)
-{
-    $request->validate([
-        'title'       => 'required|string|max:255',
-        'company'     => 'required|string|max:255',
-        'jobType'     => 'required|in:Full Time,Part Time,Internship,contract,Freelance',
-        'location'    => 'required|string|max:255',
-        'start_month' => 'required|string',
-        'start_year'  => 'required|string',
-        'end_month'   => 'nullable|string',
-        'end_year'    => 'nullable|string',
-        'description' => 'required|string',
-    ]);
+   public function addExperience(Request $request)
+    {
+        // 1. Validate the request
+        $validated = $request->validate([
+            'title'       => 'required|string|max:255',
+            'company'     => 'required|string|max:255',
+            'jobType'     => 'required|in:Full Time,Part Time,Internship,contract,Freelance',
+            'location'    => 'required|string|max:255',
+            'start_month' => 'required|string',
+            'start_year'  => 'required|string',
+            'end_month'   => 'nullable|string',
+            'end_year'    => 'nullable|string',
+            'description' => 'required|string',
+        ]);
 
-    $exp = Experience::create(array_merge($request->all(), ['user_id' => Auth::id()]));
+        // 2. Append the authenticated user ID securely
+        $validated['user_id'] = Auth::id();
 
-    return response()->json([
-        'status' => true, 
-        'message' => 'Experience added successfully', 
-        'experience' => $exp
-    ]);
-}
+        // 3. Create the record using ONLY validated data
+        $exp = Experience::create($validated);
 
-public function showAllExperience()
-{
-    $experiences = Experience::where('user_id', Auth::id())->latest()->get();
-    return response()->json(['status' => true, 'experiences' => $experiences]);
-}
+        return response()->json([
+            'status'     => true,
+            'message'    => 'Experience added successfully',
+            'experience' => $exp,
+        ]);
+    }
 
-public function showExperience($id)
-{
-    $exp = Experience::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
-    return response()->json(['status' => true, 'experience' => $exp]);
-}
-
-public function editExperience(Request $request, $id)
-{
-    $request->validate([
-        'title'       => 'required|string|max:255',
-        'company'     => 'required|string|max:255',
-        'jobType'     => 'required|string',
-        'location'    => 'required|string|max:255',
-        'start_month' => 'required|string',
-        'start_year'  => 'required|string',
-        'description' => 'required|string',
-    ]);
-
-    $exp = Experience::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
-    $exp->update($request->all());
-
-    return response()->json(['status' => true, 'message' => 'Experience updated successfully']);
-}
-
-public function deleteExperience(Request $request)
-{
-    Experience::where('id', $request->id)->where('user_id', Auth::id())->delete();
-    return response()->json(['status' => true, 'message' => 'Experience deleted']);
-}
-
-public function addCover(Request $request) {
-    $request->validate([
-        'coverImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
-
-    $user_id = Auth::id();
-    $profile = ProfileModel::where('user_id', $user_id)->first();
-
-    if ($request->hasFile('coverImage')) {
-        $file = $request->file('coverImage');
+    public function showAllExperience()
+    {
+        $experiences = Experience::where('user_id', Auth::id())->latest()->get();
         
-        // 1. Generate a unique name
-        $filename = 'cover_' . $user_id . '_' . time() . '.' . $file->getClientOriginalExtension();
-        
-        // 2. Upload the actual file to storage/app/public/uploads
-        $file->storeAs('uploads', $filename, 'public');
+        return response()->json([
+            'status' => true, 
+            'experiences' => $experiences
+        ]);
+    }
 
-        if ($profile) {
-            // 3. Delete the OLD file from the physical folder using the name stored in DB
-            if ($profile->coverImage) {
-                Storage::disk('public')->delete('uploads/' . $profile->coverImage);
-            }
+    public function showExperience($id)
+    {
+        // Using first() instead of firstOrFail() to return clean JSON errors
+        $exp = Experience::where('id', $id)->where('user_id', Auth::id())->first();
 
-            // 4. Update DB with just the NEW filename string
-            $profile->update([
-                'coverImage' => $filename
-            ]);
-        } else {
-            // Create new record if user doesn't have a profile yet
-            ProfileModel::create([
-                'user_id' => $user_id,
-                'coverImage' => $filename,
+        if (!$exp) {
+            return response()->json([
+                'status'  => false,
+                'message' => 'Experience not found'
             ]);
         }
 
         return response()->json([
-            'status' => true, 
-            'message' => 'Cover updated!',
-            'image_url' => asset('storage/uploads/' . $filename)
+            'status'     => true, 
+            'experience' => $exp
         ]);
     }
-}
+
+    public function editExperience(Request $request, $id)
+    {
+        // 1. Fixed missing validation rules for Edit
+        $validated = $request->validate([
+            'title'       => 'required|string|max:255',
+            'company'     => 'required|string|max:255',
+            'jobType'     => 'required|in:Full Time,Part Time,Internship,contract,Freelance',
+            'location'    => 'required|string|max:255',
+            'start_month' => 'required|string',
+            'start_year'  => 'required|string',
+            'end_month'   => 'nullable|string', // Added
+            'end_year'    => 'nullable|string', // Added
+            'description' => 'required|string',
+        ]);
+
+        $exp = Experience::where('id', $id)->where('user_id', Auth::id())->first();
+
+        if (!$exp) {
+            return response()->json([
+                'status'  => false,
+                'message' => 'Experience not found'
+            ]);
+        }
+
+        // 2. Update using ONLY validated data
+        // If the user checks "I currently work here", this safely forces end_month/year to null
+        $exp->update($validated);
+
+        return response()->json([
+            'status'  => true, 
+            'message' => 'Experience updated successfully'
+        ]);
+    }
+
+    public function deleteExperience(Request $request)
+    {
+        $deleted = Experience::where('id', $request->id)->where('user_id', Auth::id())->delete();
+
+        // Ensure the record actually existed before returning success
+        if (!$deleted) {
+            return response()->json([
+                'status'  => false,
+                'message' => 'Experience not found'
+            ]);
+        }
+
+        return response()->json([
+            'status'  => true, 
+            'message' => 'Experience deleted'
+        ]);
+    }
+    public function addCover(Request $request)
+    {
+        $request->validate([
+            'coverImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $user_id = Auth::id();
+        $profile = Profile::where('user_id', $user_id)->first();
+
+        if ($request->hasFile('coverImage')) {
+            $file = $request->file('coverImage');
+
+            // 1. Generate a unique name
+            $filename = 'cover_' . $user_id . '_' . time() . '.' . $file->getClientOriginalExtension();
+
+            // 2. Upload the actual file to storage/app/public/uploads
+            $file->storeAs('uploads', $filename, 'public');
+
+            if ($profile) {
+                // 3. Delete the OLD file from the physical folder using the name stored in DB
+                if ($profile->coverImage) {
+                    Storage::disk('public')->delete('uploads/' . $profile->coverImage);
+                }
+
+                // 4. Update DB with just the NEW filename string
+                $profile->update([
+                    'coverImage' => $filename,
+                ]);
+            } else {
+                // Create new record if user doesn't have a profile yet
+                Profile::create([
+                    'user_id'    => $user_id,
+                    'coverImage' => $filename,
+                ]);
+            }
+
+            return response()->json([
+                'status'    => true,
+                'message'   => 'Cover updated!',
+                'image_url' => asset('storage/uploads/' . $filename),
+            ]);
+        }
+    }
 
     private function getProfile()
     {
-        return ProfileModel::firstOrCreate(
+        return Profile::firstOrCreate(
             ['user_id' => Auth::id()],
             ['email' => Auth::user()->email, 'name' => Auth::user()->name]
         );
@@ -396,13 +443,13 @@ public function addCover(Request $request) {
     public function updateCover(Request $request)
     {
         $request->validate([
-            'coverImage' => 'required|image|mimes:jpeg,png|max:2048'
+            'coverImage' => 'required|image|mimes:jpeg,png|max:2048',
         ]);
 
         $profile = $this->getProfile();
 
         if ($request->hasFile('coverImage')) {
-            $path = $request->file('coverImage')->store('covers', 'public');
+            $path                = $request->file('coverImage')->store('covers', 'public');
             $profile->coverImage = $path;
             $profile->save();
         }
@@ -414,13 +461,13 @@ public function addCover(Request $request) {
     public function updateAvatar(Request $request)
     {
         $request->validate([
-            'avatar' => 'required|image|mimes:jpeg,png|max:2048'
+            'avatar' => 'required|image|mimes:jpeg,png|max:2048',
         ]);
 
         $profile = $this->getProfile();
 
         if ($request->hasFile('avatar')) {
-            $path = $request->file('avatar')->store('avatars', 'public');
+            $path                  = $request->file('avatar')->store('avatars', 'public');
             $profile->profileImage = $path;
             $profile->save();
         }
@@ -430,7 +477,7 @@ public function addCover(Request $request) {
 
     public function removeAvatar()
     {
-        $profile = $this->getProfile();
+        $profile               = $this->getProfile();
         $profile->profileImage = null;
         $profile->save();
 
@@ -443,13 +490,13 @@ public function addCover(Request $request) {
         $profile = $this->getProfile();
 
         $profile->update([
-            'name' => $request->name,
-            'phone' => $request->phone,
+            'name'                 => $request->name,
+            'phone'                => $request->phone,
             'ProfessionalHeadline' => $request->headline,
-            'status' => $request->status,
-            'location' => $request->location,
-            'linkedin' => $request->linkedin,
-            'github' => $request->github,
+            'status'               => $request->status,
+            'location'             => $request->location,
+            'linkedin'             => $request->linkedin,
+            'github'               => $request->github,
         ]);
 
         return response()->json(['success' => true]);
@@ -459,13 +506,13 @@ public function addCover(Request $request) {
     public function updateResume(Request $request)
     {
         $request->validate([
-            'resume' => 'required|mimes:pdf|max:2048'
+            'resume' => 'required|mimes:pdf|max:2048',
         ]);
 
         $profile = $this->getProfile();
 
         if ($request->hasFile('resume')) {
-            $path = $request->file('resume')->store('resumes', 'public');
+            $path            = $request->file('resume')->store('resumes', 'public');
             $profile->resume = $path;
             $profile->save();
         }
