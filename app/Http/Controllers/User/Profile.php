@@ -7,6 +7,7 @@ use App\Models\Experience;
 use App\Models\Project;
 use App\Models\Skill;
 use App\Models\User;
+use App\Models\Information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -387,137 +388,37 @@ class Profile extends Controller
             'message' => 'Experience deleted'
         ]);
     }
-    public function addCover(Request $request)
+  public function getInformation(Request $request)
     {
-        $request->validate([
-            'coverImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        $user = Auth::user();
+        
+        // Fetch the information record for the logged-in user
+        $info = Information::where('user_id', $user->id)->first();
+
+        return response()->json([
+            'status' => true,
+            'user'   => [
+                'name'  => $user->name,
+                'email' => $user->email,
+            ],
+            'info'   => $info // This will be null if they haven't saved info yet, which is fine
         ]);
-
-        $user_id = Auth::id();
-        $profile = Profile::where('user_id', $user_id)->first();
-
-        if ($request->hasFile('coverImage')) {
-            $file = $request->file('coverImage');
-
-            // 1. Generate a unique name
-            $filename = 'cover_' . $user_id . '_' . time() . '.' . $file->getClientOriginalExtension();
-
-            // 2. Upload the actual file to storage/app/public/uploads
-            $file->storeAs('uploads', $filename, 'public');
-
-            if ($profile) {
-                // 3. Delete the OLD file from the physical folder using the name stored in DB
-                if ($profile->coverImage) {
-                    Storage::disk('public')->delete('uploads/' . $profile->coverImage);
-                }
-
-                // 4. Update DB with just the NEW filename string
-                $profile->update([
-                    'coverImage' => $filename,
-                ]);
-            } else {
-                // Create new record if user doesn't have a profile yet
-                Profile::create([
-                    'user_id'    => $user_id,
-                    'coverImage' => $filename,
-                ]);
-            }
-
-            return response()->json([
-                'status'    => true,
-                'message'   => 'Cover updated!',
-                'image_url' => asset('storage/uploads/' . $filename),
-            ]);
-        }
     }
-
-    private function getProfile()
+    public function getInfo(Request $request)
     {
-        return Profile::firstOrCreate(
-            ['user_id' => Auth::id()],
-            ['email' => Auth::user()->email, 'name' => Auth::user()->name]
-        );
-    }
+        $user = Auth::user();
+        
+        // Fetch the information record for the logged-in user
+        $info = Information::where('user_id', $user->id)->first();
 
-    // Cover Photo
-    public function updateCover(Request $request)
-    {
-        $request->validate([
-            'coverImage' => 'required|image|mimes:jpeg,png|max:2048',
+        return response()->json([
+            'status' => true,
+            'user'   => [
+                'name'  => $user->name,
+                'email' => $user->email,
+            ],
+            'info'   => $info // This will be null if they haven't saved info yet, which is fine
         ]);
-
-        $profile = $this->getProfile();
-
-        if ($request->hasFile('coverImage')) {
-            $path                = $request->file('coverImage')->store('covers', 'public');
-            $profile->coverImage = $path;
-            $profile->save();
-        }
-
-        return response()->json(['success' => true, 'message' => 'Cover updated']);
-    }
-
-    // Avatar
-    public function updateAvatar(Request $request)
-    {
-        $request->validate([
-            'avatar' => 'required|image|mimes:jpeg,png|max:2048',
-        ]);
-
-        $profile = $this->getProfile();
-
-        if ($request->hasFile('avatar')) {
-            $path                  = $request->file('avatar')->store('avatars', 'public');
-            $profile->profileImage = $path;
-            $profile->save();
-        }
-
-        return response()->json(['success' => true]);
-    }
-
-    public function removeAvatar()
-    {
-        $profile               = $this->getProfile();
-        $profile->profileImage = null;
-        $profile->save();
-
-        return response()->json(['success' => true]);
-    }
-
-    // General Info
-    public function updateInfo(Request $request)
-    {
-        $profile = $this->getProfile();
-
-        $profile->update([
-            'name'                 => $request->name,
-            'phone'                => $request->phone,
-            'ProfessionalHeadline' => $request->headline,
-            'status'               => $request->status,
-            'location'             => $request->location,
-            'linkedin'             => $request->linkedin,
-            'github'               => $request->github,
-        ]);
-
-        return response()->json(['success' => true]);
-    }
-
-    // Resume
-    public function updateResume(Request $request)
-    {
-        $request->validate([
-            'resume' => 'required|mimes:pdf|max:2048',
-        ]);
-
-        $profile = $this->getProfile();
-
-        if ($request->hasFile('resume')) {
-            $path            = $request->file('resume')->store('resumes', 'public');
-            $profile->resume = $path;
-            $profile->save();
-        }
-
-        return response()->json(['success' => true]);
     }
 
 }

@@ -61,5 +61,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile/avatar/remove', [Profile::class, 'removeAvatar']);
     Route::post('/profile/info', [Profile::class, 'updateInfo']);
     Route::post('/profile/resume', [Profile::class, 'updateResume']);
+    Route::get('/profile/get-info', [Profile::class, 'getInformation'])->name('profile.getInfo');
 });
 require __DIR__.'/auth.php';
