@@ -53,14 +53,16 @@ Route::prefix('experience')->group(function () {
     Route::post('/edit/{id}', [Profile::class, 'editExperience']);
     Route::post('/delete', [Profile::class, 'deleteExperience']);
 });
-use App\Http\Controllers\ProfileController;
+
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('/profile/cover', [Profile::class, 'updateCover']);
-    Route::post('/profile/avatar', [Profile::class, 'updateAvatar']);
-    Route::post('/profile/avatar/remove', [Profile::class, 'removeAvatar']);
-    Route::post('/profile/info', [Profile::class, 'updateInfo']);
-    Route::post('/profile/resume', [Profile::class, 'updateResume']);
-    Route::get('/profile/get-info', [Profile::class, 'getInformation'])->name('profile.getInfo');
+    // Profile Information Routes
+    Route::get('/profile/get-info', [Profile::class, 'getInfo'])->name('profile.getInfo');
+    Route::post('/profile/cover', [Profile::class, 'updateCover'])->name('profile.cover');
+    Route::post('/profile/avatar', [Profile::class, 'updateAvatar'])->name('profile.avatar');
+    Route::post('/profile/avatar/remove', [Profile::class, 'removeAvatar'])->name('profile.avatar.remove');
+    Route::post('/profile/info', [Profile::class, 'updateInfo'])->name('profile.info');
+    Route::post('/profile/resume', [Profile::class, 'updateResume'])->name('profile.resume');
 });
+Route::get('/user/{id}', [Profile::class, 'showPublicProfile'])->name('profile.public');
 require __DIR__.'/auth.php';

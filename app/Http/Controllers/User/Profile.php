@@ -2,13 +2,13 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Project;
 use App\Models\Skill;
 use App\Models\User;
 use App\Models\Information;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -404,21 +404,135 @@ class Profile extends Controller
             'info'   => $info // This will be null if they haven't saved info yet, which is fine
         ]);
     }
+
+
+    // --- Helper Method ---
+    private function getInfoRecord()
+    {
+        return Information::firstOrCreate(['user_id' => Auth::id()]);
+    }
+
+    // --- 1. Fetch Data ---
     public function getInfo(Request $request)
     {
         $user = Auth::user();
-        
-        // Fetch the information record for the logged-in user
         $info = Information::where('user_id', $user->id)->first();
 
         return response()->json([
             'status' => true,
-            'user'   => [
-                'name'  => $user->name,
-                'email' => $user->email,
-            ],
-            'info'   => $info // This will be null if they haven't saved info yet, which is fine
+            'user'   => ['name' => $user->name, 'email' => $user->email],
+            'info'   => $info
         ]);
     }
+
+    // --- 2. Cover Photo ---
+    public function updateCover(Request $request)
+    {
+        $request->validate([
+            'cover_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $info = $this->getInfoRecord();
+
+        if ($request->hasFile('cover_photo')) {
+            if ($info->cover_photo && Storage::disk('public')->exists($info->cover_photo)) {
+                Storage::disk('public')->delete($info->cover_photo);
+            }
+
+            $path = $request->file('cover_photo')->store('covers', 'public');
+            $info->update(['cover_photo' => $path]);
+
+            return response()->json(['status' => true, 'image_url' => asset('storage/' . $path)]);
+        }
+        return response()->json(['status' => false, 'message' => 'No image uploaded']);
+    }
+
+    // --- 3. Avatar Photo ---
+    public function updateAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar_photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $info = $this->getInfoRecord();
+
+        if ($request->hasFile('avatar_photo')) {
+            if ($info->avatar_photo && Storage::disk('public')->exists($info->avatar_photo)) {
+                Storage::disk('public')->delete($info->avatar_photo);
+            }
+
+            $path = $request->file('avatar_photo')->store('avatars', 'public');
+            $info->update(['avatar_photo' => $path]);
+
+            return response()->json(['status' => true, 'image_url' => asset('storage/' . $path)]);
+        }
+        return response()->json(['status' => false, 'message' => 'No image uploaded']);
+    }
+
+    public function removeAvatar()
+    {
+        $info = $this->getInfoRecord();
+        
+        if ($info->avatar_photo && Storage::disk('public')->exists($info->avatar_photo)) {
+            Storage::disk('public')->delete($info->avatar_photo);
+        }
+        
+        $info->update(['avatar_photo' => null]);
+        
+        // Return user name so JS can regenerate the UI-Avatar initials
+        return response()->json(['status' => true, 'name' => Auth::user()->name]);
+    }
+
+    // --- 4. General Information ---
+    public function updateInfo(Request $request)
+    {
+        $validated = $request->validate([
+            'professional_headline' => 'required|string|max:255',
+            'availability_status'   => 'nullable|string|max:255',
+            'location'              => 'nullable|string|max:255',
+            'about_me'              => 'nullable|string',
+            'linkedin'              => 'nullable|url|max:255',
+            'github'                => 'nullable|url|max:255',
+            'facebook'              => 'nullable|url|max:255',
+            'instagram'             => 'nullable|url|max:255',
+        ]);
+
+        $info = $this->getInfoRecord();
+        $info->update($validated);
+
+        return response()->json(['status' => true, 'message' => 'Profile updated successfully.']);
+    }
+
+    // --- 5. Resume ---
+    public function updateResume(Request $request)
+    {
+        $request->validate([
+            'resume' => 'required|mimes:pdf|max:2048',
+        ]);
+
+        $info = $this->getInfoRecord();
+
+        if ($request->hasFile('resume')) {
+            if ($info->resume && Storage::disk('public')->exists($info->resume)) {
+                Storage::disk('public')->delete($info->resume);
+            }
+
+            $path = $request->file('resume')->store('resumes', 'public');
+            $info->update(['resume' => $path]);
+
+            // Get just the file name to display in the UI
+            $filename = basename($path);
+
+            return response()->json(['status' => true, 'filename' => $filename]);
+        }
+        return response()->json(['status' => false, 'message' => 'No file uploaded']);
+    }
+    public function showPublicProfile($id)
+{
+    // Eager load all the relationships so we don't hit the database 100 times
+    $user = User::with(['information', 'skills', 'experiences', 'projects', 'education'])->findOrFail($id);
+    
+    return view('userPages.profile', compact('user'));
+}
 
 }

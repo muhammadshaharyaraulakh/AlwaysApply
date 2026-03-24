@@ -48,8 +48,29 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function profile()
-{
-    return $this->hasOne(Profile::class);
-}
+   public function information()
+    {
+        return $this->hasOne(Information::class);
+    }
+
+    // You should also make sure you have your other relationships here too!
+    public function skills()
+    {
+        return $this->hasMany(Skill::class);
+    }
+
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function education()
+    {
+        return $this->hasMany(Education::class);
+    }
 }

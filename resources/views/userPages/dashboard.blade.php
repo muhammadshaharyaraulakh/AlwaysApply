@@ -181,8 +181,7 @@
             </div>
           </div>
         </div>
-
-        <div id="section-profile-info" class="dashboard-section space-y-6 hidden">
+<div id="section-profile-info" class="dashboard-section space-y-6 hidden">
   <div>
     <h1 class="text-2xl font-bold text-gray-900">Edit Profile Information</h1>
     <p class="text-gray-500 text-sm mt-1">Update your personal details, banner, and digital footprint.</p>
