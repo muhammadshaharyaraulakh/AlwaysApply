@@ -64,5 +64,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile/info', [Profile::class, 'updateInfo'])->name('profile.info');
     Route::post('/profile/resume', [Profile::class, 'updateResume'])->name('profile.resume');
 });
-Route::get('/user/{id}', [Profile::class, 'showPublicProfile'])->name('profile.public');
+ Route::get('/profile/{id}', [Profile::class, 'showPublicProfile'])->name('userPages.profile');
 require __DIR__.'/auth.php';

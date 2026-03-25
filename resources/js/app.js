@@ -5,7 +5,6 @@ import './projects.js';
 import './education.js';
 import   './experience.js';
 import './information.js';
-import './profile.js'
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 AOS.init({

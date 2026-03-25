@@ -53,8 +53,8 @@
         <a href="/dashboard" class="hover:text-brand-purple transition"
           >Dashboard</a
         >
-     <a href="{{ route('profile.public', Auth::id()) }}" class="hover:text-brand-purple transition">
-    View Public Profile
+     <a href="{{ route('userPages.profile', Auth::id()) }}" class="hover:text-brand-purple transition">
+    Profile
 </a>
       </div>
 
