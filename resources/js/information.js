@@ -163,9 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ==========================================
-    // 5. RESUME SUBMISSION
-    // ==========================================
     const resumeForm = document.getElementById('form-resume');
     if (resumeForm) {
         resumeForm.addEventListener('submit', async (e) => {
